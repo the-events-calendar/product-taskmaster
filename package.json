@@ -1,12 +1,10 @@
 {
   "name": "product-taskmaster",
+  "description": "This is a collection of Modern Tribe product Gulp tasks",
   "version": "0.0.1",
   "repository": "git@github.com:moderntribe/product-taskmaster.git",
-  "engines": {
-    "node": "0.10.30",
-    "npm": "1.4.23"
-  },
-  "devDependencies": {
+  "main": "index.js",
+  "dependencies": {
     "gulp": "^3.9.1",
     "gulp-cssnano": "^2.1.1",
     "gulp-download-stream": "0.0.13",
