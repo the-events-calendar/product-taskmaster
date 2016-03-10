@@ -1,5 +1,6 @@
 var gulp       = require( 'gulp' );
 var livereload = require( 'gulp-livereload' );
+var gutil      = require( 'gulp-util' );
 
 var watch_task = function() {
 	'use strict';
