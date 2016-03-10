@@ -1,3 +1,3 @@
 module.exports = function() {
-	require( 'require-dir' )( './dev/tasks', { recurse: true } );
+	require( 'require-dir' )( './tasks', { recurse: true } );
 };
