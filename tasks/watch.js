@@ -1,4 +1,5 @@
 var cssnano    = require( 'gulp-cssnano' );
+var fs         = require( 'fs' );
 var gulp       = require( 'gulp' );
 var gutil      = require( 'gulp-util' );
 var livereload = require( 'gulp-livereload' );
@@ -10,11 +11,26 @@ var watch_task = function() {
 
 	livereload.listen();
 
+  var css_dir = 'src/resources/css';
+  var js_dir = 'src/resources/js';
+
+  try {
+    fs.statSync( css_dir );
+  } catch( err ) {
+    css_dir = 'resources';
+  }
+
+  try {
+    fs.statSync( js_dir );
+  } catch( err ) {
+    js_dir = 'resources';
+  }
+
 	// watch for changes to non .min JS files and compress them
 	gulp.watch(
 		[
-		  'src/resources/js/*.js',
-			'!src/resources/js/*.min.js'
+		  js_dir + '/*.js',
+			'!' + js_dir + '/*.min.js'
 		],
 		function( file ) {
 		  gulp.src( file.path )
@@ -24,15 +40,15 @@ var watch_task = function() {
 					  extname: '.min.js'
 					} )
 				)
-				.pipe( gulp.dest( 'src/resources/js' ) );
+				.pipe( gulp.dest( js_dir ) );
 		}
 	);
 
 	// watch for changes to non .min CSS files and compress them
 	gulp.watch(
 		[
-		  'src/resources/css/*.css',
-			'!src/resources/css/*.min.css'
+		  css_dir + '/*.css',
+			'!' + css_dir + '/*.min.css'
 		],
 		function( file ) {
 		  gulp.src( file.path )
@@ -42,14 +58,14 @@ var watch_task = function() {
 					  extname: '.min.css'
 					} )
 				)
-				.pipe( gulp.dest( 'src/resources/css' ) );
+				.pipe( gulp.dest( css_dir ) );
 		}
 	);
 
 	// watch for changes to JS and CSS and let livereload know about those changes
 	gulp.watch( [
-	  'src/resources/js/*.js',
-	  'src/resources/css/*.css'
+	  js_dir + '/*.js',
+	  css_dir + '/*.css'
 	] ).on( 'change', function( file ) {
 		livereload.changed( file.path );
 		gutil.log( gutil.colors.yellow( 'File changed (' + file.path + ')' ) );

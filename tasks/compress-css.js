@@ -1,13 +1,22 @@
 var gulp    = require( 'gulp' );
+var fs      = require( 'fs' );
 var cssnano = require( 'gulp-cssnano' );
 var rename  = require( 'gulp-rename' );
 
 var css_task = function() {
   'use strict';
 
+  var dir = 'src/resources/css';
+
+  try {
+    fs.statSync( dir );
+  } catch( err ) {
+    dir = 'resources';
+  }
+
   return gulp.src( [
-    'src/resources/css/*.css',
-    '!src/resources/css/*.min.css',
+    dir + '/*.css',
+    '!' + dir + '/*.min.css',
   ] )
     .pipe( cssnano() )
     .pipe(
@@ -15,7 +24,7 @@ var css_task = function() {
         extname: '.min.css'
       } )
     )
-    .pipe( gulp.dest( 'src/resources/css' ) );
+    .pipe( gulp.dest( dir ) );
 };
 
 gulp.task( 'compress-css', css_task );
