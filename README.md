@@ -108,6 +108,14 @@ This task pulls and submodule updates the repo using the branch provided by `--b
 gulp pull --branch <branch-you-want-to-pull>
 ```
 
+#### sass
+
+This task compiles sass into css.
+
+```
+gulp sass
+```
+
 #### zip
 
 This task packages the files indicated by `package-whitelist.json` into
