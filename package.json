@@ -6,7 +6,6 @@
   "main": "index.js",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-callback": "^0.0.3",
     "gulp-cssnano": "^2.1.1",
     "gulp-download-stream": "0.0.13",
     "gulp-error-notifier": "^1.1.0",
