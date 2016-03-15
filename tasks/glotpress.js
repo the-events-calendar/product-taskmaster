@@ -1,7 +1,8 @@
-var gulp     = require( 'gulp' );
-var fs       = require( 'fs' );
-var download = require( 'gulp-download-stream' );
-var request  = require( 'request' );
+var gulp      = require( 'gulp' );
+var fs        = require( 'fs' );
+var download  = require( 'gulp-download-stream' );
+var request   = require( 'request' );
+var gcallback = require( 'gulp-callback' );
 
 var glotpress_task = function( cb ) {
   'use strict';
@@ -24,6 +25,8 @@ var glotpress_task = function( cb ) {
     if ( ! error && response.statusCode === 200 ) {
       var data = JSON.parse( body );
       var set, index, format;
+
+			var files_to_download = [];
 
       for ( index in data.translation_sets ) {
         set = data.translation_sets[ index ];
@@ -55,16 +58,19 @@ var glotpress_task = function( cb ) {
             return info.hasOwnProperty( key ) ? info[ key ] : '';
           } );
 
-          download( {
+					files_to_download.push( {
             file: filename,
             url: url
-          } )
-            .pipe( gulp.dest( 'lang/' ) );
+          } );
         }
       }
-    }
 
-    cb();
+			download( files_to_download )
+				.pipe( gulp.dest( 'lang/' ) )
+        .pipe( gcallback( function() {
+          cb();
+        } ) );
+    }
   } );
 };
 
