@@ -10,7 +10,6 @@ var package_task = function( cb ) {
       'compress-js',
       'compress-css'
     ],
-    'glotpress',
     'zip',
     cb
   );
