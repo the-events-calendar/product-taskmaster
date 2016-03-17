@@ -1,6 +1,6 @@
 var gulp   = require( 'gulp' );
-var fs     = require( 'fs' );
-var zip    = require( 'gulp-vinyl-zip' ).zip;
+var zip = require( 'gulp-vinyl-zip' ).zip;
+var fs  = require( 'fs-sync' );
 
 var zip_task = function() {
   'use strict';
@@ -8,9 +8,14 @@ var zip_task = function() {
   var json = JSON.parse( fs.readFileSync( './package.json' ) );
   var zip_include = JSON.parse( fs.readFileSync( './package-whitelist.json' ) );
 
-  return gulp.src( zip_include, { base: '.' } )
-    .pipe( zip( json._zipname + '.' + json.version + '.zip' ) )
-    .pipe( gulp.dest( '../' ) );
+	fs.mkdir( json._zipfoldername );
+	for ( var i in zip_include ) {
+		fs.copy( zip_include[ i ], json._zipfoldername + '/' + zip_include[ i ] );
+	}
+
+	return gulp.src( json._zipfoldername )
+		.pipe( zip( json._zipname + '.' + json.version + '.zip' ) )
+		.pipe( gulp.dest( '../' ) );
 };
 
 gulp.task( 'zip', zip_task );
