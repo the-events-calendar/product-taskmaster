@@ -19,7 +19,7 @@
     "gulp-vinyl-zip": "^1.1.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
-    "yargs": "^4.2.0"
+    "yargs": "^4.2.0",
     "request": "^2.7"
   }
 }
