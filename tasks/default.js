@@ -5,6 +5,7 @@ var default_task = function( cb ) {
   'use strict';
 
   sequence(
+    'postcss',
     'sass',
     [
       'compress-css',

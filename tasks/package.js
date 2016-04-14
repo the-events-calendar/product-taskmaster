@@ -6,6 +6,7 @@ var package_task = function( cb ) {
 
   sequence(
     'pull',
+    'postcss',
     [
       'compress-js',
       'compress-css'
