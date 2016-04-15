@@ -63,8 +63,8 @@ var watch_task = function() {
       ].join( '\n' );
 
       gulp.src( [
-        './src/resources/postcss/**/*.css',
-        '!./src/resources/postcss/**/_*.css',
+        './src/resources/postcss/**/*.pcss',
+        '!./src/resources/postcss/**/_*.pcss',
       ] )
         .pipe( postcss( processors ) )
         .pipe( header( banner ) )
