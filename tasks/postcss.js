@@ -28,6 +28,8 @@ var postcss_task = function() {
 		' *',
 		' * @see: http://moderntribe.github.io/products-engineering/css/',
 		' */',
+		'',
+		'',
   ].join( '\n' );
 
 	return gulp.src( [
