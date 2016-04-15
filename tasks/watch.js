@@ -5,12 +5,19 @@ var gutil      = require( 'gulp-util' );
 var livereload = require( 'gulp-livereload' );
 var rename     = require( 'gulp-rename' );
 var uglify     = require( 'gulp-uglify' );
+var postcss     = require( 'gulp-postcss' );
+var cssnext     = require( 'postcss-cssnext' );
+var cssimport   = require( 'postcss-import' );
+var cssnested   = require( 'postcss-nested' );
+var cssmixins   = require( 'postcss-mixins' );
+var cssmqpacker = require( 'css-mqpacker' );
 
 var watch_task = function() {
 	'use strict';
 
 	livereload.listen();
 
+  var postcss_dir = 'src/resources/postcss';
   var css_dir = 'src/resources/css';
   var js_dir = 'src/resources/js';
 
@@ -25,6 +32,29 @@ var watch_task = function() {
   } catch( err ) {
     js_dir = 'resources';
   }
+
+	// watch for changes to postcss files and compile them
+	gulp.watch(
+		[
+		  postcss_dir + '/*.css',
+		],
+		function() {
+			var processors = [
+				cssimport(),
+				cssmixins(),
+				cssnested(),
+				cssnext(),
+				cssmqpacker(),
+			];
+
+			gulp.src( [
+				'./src/resources/postcss/**/*.css',
+				'!./src/resources/postcss/**/_*.css',
+			] )
+				.pipe( postcss( processors ) )
+				.pipe( gulp.dest( './src/resources/css' ) );
+		}
+	);
 
 	// watch for changes to non .min JS files and compress them
 	gulp.watch(
