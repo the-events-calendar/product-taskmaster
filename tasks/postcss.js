@@ -17,7 +17,10 @@ var postcss_task = function() {
 		cssmqpacker(),
 	];
 
-	return gulp.src( './src/resources/postcss/*.css' )
+	return gulp.src( [
+		'./src/resources/postcss/**/*.css',
+		'!./src/resources/postcss/**/_*.css',
+	] )
 		.pipe( postcss( processors ) )
 		.pipe( gulp.dest( './src/resources/css' ) );
 };
