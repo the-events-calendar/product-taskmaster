@@ -37,7 +37,7 @@ var watch_task = function() {
   // watch for changes to postcss files and compile them
   gulp.watch(
     [
-      postcss_dir + '/*.css',
+      postcss_dir + '/*.pcss',
     ],
     function() {
       var processors = [
