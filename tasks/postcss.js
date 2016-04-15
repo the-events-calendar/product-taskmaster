@@ -6,6 +6,7 @@ var cssimport   = require( 'postcss-import' );
 var cssnested   = require( 'postcss-nested' );
 var cssmixins   = require( 'postcss-mixins' );
 var cssmqpacker = require( 'css-mqpacker' );
+var rename      = require( 'gulp-rename' );
 
 var postcss_task = function() {
   'use strict';
@@ -38,6 +39,11 @@ var postcss_task = function() {
   ] )
     .pipe( postcss( processors ) )
     .pipe( header( banner ) )
+    .pipe(
+      rename( {
+        extname: '.css'
+      } )
+    )
     .pipe( gulp.dest( './src/resources/css' ) );
 };
 

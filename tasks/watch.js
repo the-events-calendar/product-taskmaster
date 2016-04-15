@@ -68,6 +68,11 @@ var watch_task = function() {
       ] )
         .pipe( postcss( processors ) )
         .pipe( header( banner ) )
+        .pipe(
+          rename( {
+            extname: '.css'
+          } )
+        )
         .pipe( gulp.dest( './src/resources/css' ) );
     }
   );
