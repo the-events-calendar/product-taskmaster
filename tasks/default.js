@@ -6,7 +6,6 @@ var default_task = function( cb ) {
 
   sequence(
     'postcss',
-    'sass',
     [
       'compress-css',
       'compress-js'
