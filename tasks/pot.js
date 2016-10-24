@@ -24,6 +24,7 @@ var pot_task = function() {
 		.pipe(
 			wppot( {
 				package: plugin_name + ' ' + version,
+				destFile: json._glotPressSlug + '.pot',
 				domain: json._textDomain,
 				bugReport: 'http://m.tri.be/191x'
 			} )
