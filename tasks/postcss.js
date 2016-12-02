@@ -5,7 +5,7 @@ var cssnext     = require( 'postcss-cssnext' );
 var cssimport   = require( 'postcss-import' );
 var cssnested   = require( 'postcss-nested' );
 var cssmixins   = require( 'postcss-mixins' );
-var cssstrip    = require( 'strip-css-singleline-comments' );
+var cssstrip    = require( 'gulp-strip-comments' );
 var cssmqpacker = require( 'css-mqpacker' );
 var rename      = require( 'gulp-rename' );
 
