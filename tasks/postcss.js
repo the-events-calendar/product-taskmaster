@@ -5,8 +5,8 @@ var cssnext     = require( 'postcss-cssnext' );
 var cssimport   = require( 'postcss-import' );
 var cssnested   = require( 'postcss-nested' );
 var cssmixins   = require( 'postcss-mixins' );
-var cssstrip    = require( 'gulp-strip-comments' );
 var cssmqpacker = require( 'css-mqpacker' );
+var decomment   = require( 'gulp-decomment' );
 var rename      = require( 'gulp-rename' );
 
 var postcss_task = function() {
@@ -39,7 +39,7 @@ var postcss_task = function() {
     '!./src/resources/postcss/**/_*.pcss',
   ] )
     .pipe( postcss( processors ) )
-    .pipe( cssstrip() )
+    .pipe( decomment() )
     .pipe( header( banner ) )
     .pipe(
       rename( {
