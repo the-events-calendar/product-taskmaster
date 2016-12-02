@@ -26,6 +26,7 @@
     "postcss-import": "^8.1.0",
     "postcss-mixins": "^4.0.1",
     "postcss-nested": "^1.0.0",
+    "postcss-strip-inline-comments": "^0.1.5",
     "request": "^2.7",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
