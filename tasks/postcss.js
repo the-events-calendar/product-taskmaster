@@ -1,13 +1,13 @@
-var gulp             = require( 'gulp' );
-var header           = require('gulp-header');
-var postcss          = require( 'gulp-postcss' );
-var cssnext          = require( 'postcss-cssnext' );
-var cssimport        = require( 'postcss-import' );
-var cssnested        = require( 'postcss-nested' );
-var cssmixins        = require( 'postcss-mixins' );
-var cssstripcomments = require( 'postcss-strip-inline-comments' );
-var cssmqpacker      = require( 'css-mqpacker' );
-var rename           = require( 'gulp-rename' );
+var gulp        = require( 'gulp' );
+var header      = require('gulp-header');
+var postcss     = require( 'gulp-postcss' );
+var cssnext     = require( 'postcss-cssnext' );
+var cssimport   = require( 'postcss-import' );
+var cssnested   = require( 'postcss-nested' );
+var cssmixins   = require( 'postcss-mixins' );
+var cssstrip    = require( 'strip-css-singleline-comments' );
+var cssmqpacker = require( 'css-mqpacker' );
+var rename      = require( 'gulp-rename' );
 
 var postcss_task = function() {
   'use strict';
@@ -17,8 +17,7 @@ var postcss_task = function() {
     cssmixins(),
     cssnested(),
     cssnext(),
-    cssmqpacker(),
-    cssstripcomments()
+    cssmqpacker()
   ];
 
   var banner = [
@@ -40,6 +39,7 @@ var postcss_task = function() {
     '!./src/resources/postcss/**/_*.pcss',
   ] )
     .pipe( postcss( processors ) )
+    .pipe( cssstrip() )
     .pipe( header( banner ) )
     .pipe(
       rename( {
