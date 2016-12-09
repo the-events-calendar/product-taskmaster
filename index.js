@@ -4,5 +4,4 @@ module.exports = function( gulp ) {
 	require( 'fs' ).readdirSync( normalizedPath ).forEach( function( file ) {
 		require( './tasks/' + file )( gulp );
 	} );
-	// require( 'require-dir' )( './tasks', { recurse: true } );
 };
