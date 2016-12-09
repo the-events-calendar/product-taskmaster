@@ -42,5 +42,6 @@ var pull_task = function( cb ) {
   } );
 };
 
-gulp.task( 'pull', pull_task );
-module.exports = pull_task;
+module.exports = function( gulp ) {
+  gulp.task( 'pull', pull_task );
+};

@@ -16,5 +16,6 @@ var package_task = function( cb ) {
   );
 };
 
-gulp.task( 'package', package_task );
-module.exports = package_task;
+module.exports = function( gulp ) {
+  gulp.task( 'package', package_task );
+};

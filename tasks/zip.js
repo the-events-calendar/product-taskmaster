@@ -49,5 +49,6 @@ var zip_task = function( cb ) {
   );
 };
 
-gulp.task( 'zip', zip_task );
-module.exports = zip_task;
+module.exports = function( gulp ) {
+  gulp.task( 'zip', zip_task );
+};

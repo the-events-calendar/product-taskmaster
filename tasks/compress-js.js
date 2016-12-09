@@ -27,5 +27,6 @@ var js_task = function() {
     .pipe( gulp.dest( dir ) );
 };
 
-gulp.task( 'compress-js', js_task );
-module.exports = js_task;
+module.exports = function( gulp ) {
+  gulp.task( 'compress-js', js_task );
+};

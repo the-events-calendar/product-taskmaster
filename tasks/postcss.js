@@ -47,5 +47,6 @@ var postcss_task = function() {
     .pipe( gulp.dest( './src/resources/css' ) );
 };
 
-gulp.task( 'postcss', postcss_task );
-module.exports = postcss_task;
+module.exports = function( gulp ) {
+  gulp.task( 'postcss', postcss_task );
+};
