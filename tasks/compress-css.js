@@ -27,5 +27,6 @@ var css_task = function() {
     .pipe( gulp.dest( dir ) );
 };
 
-gulp.task( 'compress-css', css_task );
-module.exports = css_task;
+module.exports = function( gulp ) {
+  gulp.task( 'compress-css', css_task );
+};

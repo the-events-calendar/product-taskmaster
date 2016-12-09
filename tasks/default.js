@@ -14,5 +14,6 @@ var default_task = function( cb ) {
   );
 };
 
-gulp.task( 'default', default_task );
-module.exports = default_task;
+module.exports = function( gulp ) {
+  gulp.task( 'default', default_task );
+};

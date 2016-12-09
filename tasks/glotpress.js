@@ -68,5 +68,6 @@ var glotpress_task = function( cb ) {
   } );
 };
 
-gulp.task( 'glotpress', glotpress_task );
-module.exports = glotpress_task;
+module.exports = function( gulp ) {
+  gulp.task( 'glotpress', glotpress_task );
+};

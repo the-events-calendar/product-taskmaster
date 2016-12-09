@@ -123,5 +123,6 @@ var watch_task = function() {
   } );
 };
 
-gulp.task( 'watch', watch_task );
-module.exports = watch_task;
+module.exports = function( gulp ) {
+  gulp.task( 'watch', watch_task );
+};
