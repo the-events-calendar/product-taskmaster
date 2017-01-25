@@ -26,7 +26,7 @@ module.exports = function( gulp ) {
 		.pipe(
 			wppot( {
 				package: label + ' ' + json.version,
-				destFile: json.name + '.pot',
+				destFile: json._textDomain + '.pot',
 				domain: json._textDomain,
 				bugReport: 'http://m.tri.be/191x',
 				headers: {
