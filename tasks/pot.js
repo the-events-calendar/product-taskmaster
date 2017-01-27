@@ -43,7 +43,7 @@ module.exports = function( gulp ) {
 				}
 			} )
 		)
-		.pipe( gulp.dest( 'lang' ) );
+		.pipe( gulp.dest( 'lang/' + json._textDomain + '.pot' ) );
 	};
 
 	gulp.task( 'pot', task );
