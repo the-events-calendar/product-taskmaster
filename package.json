@@ -1,7 +1,7 @@
 {
   "name": "product-taskmaster",
   "description": "This is a collection of Modern Tribe product Gulp tasks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "git@github.com:moderntribe/product-taskmaster.git",
   "main": "index.js",
   "dependencies": {
