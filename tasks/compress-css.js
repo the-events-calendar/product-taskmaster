@@ -18,7 +18,9 @@ module.exports = function( gulp ) {
 			dir + '/*.css',
 			'!' + dir + '/*.min.css',
 		] )
-		.pipe( cssnano() )
+		.pipe( cssnano( {
+			'zindex': false
+		} ) )
 		.pipe(
 			rename( {
 				extname: '.min.css'
