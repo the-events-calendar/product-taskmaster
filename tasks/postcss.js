@@ -7,6 +7,7 @@ module.exports = function( gulp ) {
 	var cssimport   = require( 'postcss-import' );
 	var cssnested   = require( 'postcss-nested' );
 	var cssmixins   = require( 'postcss-mixins' );
+	var csshexrgba  = require( 'postcss-hexrgba' );
 	var cssmqpacker = require( 'css-mqpacker' );
 	var rename      = require( 'gulp-rename' );
 
@@ -16,7 +17,8 @@ module.exports = function( gulp ) {
 			cssmixins(),
 			cssnested(),
 			cssnext(),
-			cssmqpacker()
+			cssmqpacker(),
+			csshexrgba()
 		];
 
 		var banner = [
