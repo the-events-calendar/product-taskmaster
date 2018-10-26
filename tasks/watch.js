@@ -3,8 +3,9 @@ module.exports = function( gulp ) {
 
 	var cssnano     = require( 'gulp-cssnano' );
 	var fs          = require( 'fs' );
-	var gutil       = require( 'gulp-util' );
+	var c           = require( 'ansi-colors' );
 	var livereload  = require( 'gulp-livereload' );
+	var log         = require( 'fancy-log' );
 	var rename      = require( 'gulp-rename' );
 	var uglify      = require( 'gulp-uglify' );
 	var header      = require( 'gulp-header' );
@@ -119,7 +120,7 @@ module.exports = function( gulp ) {
 			css_dir + '/*.css'
 		] ).on( 'change', function( file ) {
 			livereload.changed( file.path );
-			gutil.log( gutil.colors.yellow( 'File changed (' + file.path + ')' ) );
+			log( c.yellow( 'File changed (' + file.path + ')' ) );
 		} );
 	};
 
