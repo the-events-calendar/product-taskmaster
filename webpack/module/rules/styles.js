@@ -1,3 +1,4 @@
+const { resolve } = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -9,8 +10,20 @@ const plugin = () => new MiniCssExtractPlugin( {
 
 const loaders = [
 	MiniCssExtractPlugin.loader,
-	{ loader: 'css-loader', options: { importLoaders: 1 } },
-	{ loader: 'postcss-loader' },
+	{
+		loader: 'css-loader',
+		options: {
+			importLoaders: 1
+		}
+	},
+	{
+		loader: 'postcss-loader',
+		options: {
+			config: {
+				path: resolve( __dirname, '../../../config/' )
+			}
+		}
+	},
 ];
 
 module.exports = {

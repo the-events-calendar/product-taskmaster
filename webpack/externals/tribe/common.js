@@ -2,7 +2,7 @@ const { getDirectoryNames } = require( '../../utils/directories' );
 const { resolve } = require( 'path' );
 
 const directories = getDirectoryNames(
-	resolve( __dirname, '../../../plugins/common/src/modules' )
+	resolve( __dirname, '../../../../../src/modules' )
 );
 
 const generateExternals = ( entries ) => (
