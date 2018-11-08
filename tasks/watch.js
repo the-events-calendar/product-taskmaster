@@ -10,7 +10,7 @@ module.exports = function( gulp ) {
 	var uglify      = require( 'gulp-uglify' );
 	var header      = require( 'gulp-header' );
 	var postcss     = require( 'gulp-postcss' );
-	var cssnext     = require( 'postcss-cssnext' );
+	var presetEnv   = require( 'postcss-preset-env' );
 	var cssimport   = require( 'postcss-import' );
 	var cssnested   = require( 'postcss-nested' );
 	var cssmixins   = require( 'postcss-mixins' );
@@ -45,7 +45,7 @@ module.exports = function( gulp ) {
 					cssimport(),
 					cssmixins(),
 					cssnested(),
-					cssnext(),
+					presetEnv(),
 					cssmqpacker(),
 				];
 
