@@ -38,6 +38,7 @@ require('./fetchPackageJSON').then((commonJSON)=>{
         parser: 'json'
     });
     writeFileSync('package.json', json );
+    console.info('Successfully sync package.json');
 });
 
 

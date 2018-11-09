@@ -12,8 +12,10 @@ module.exports = new Promise((resolve, reject)=>{
         response.on('end', () => {
             try {
                 resolve( JSON.parse(data) );
+                console.info('Successfully fetched latest tribe-common package.json');
             } catch (e) {
                 reject(e);
+                console.error(e);
             }
         } );
     });
