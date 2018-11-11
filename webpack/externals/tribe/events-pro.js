@@ -1,6 +1,6 @@
 const REGEX = /^@moderntribe\/events-pro\//;
 
-module.exports = function( context, request, callback ) {
+module.exports = function eventsProExternals( context, request, callback ) {
 	if ( REGEX.test( request ) ) {
 		const path = request
 			.replace( /\//g, '.' ) // Convert `/` to `.`

@@ -1,6 +1,6 @@
 const REGEX = /^@moderntribe\/common\//;
 
-module.exports = function( context, request, callback ) {
+module.exports = function commonExternals( context, request, callback ) {
 	if ( REGEX.test( request ) ) {
 		const path = request
 			.replace( /\//g, '.' ) // Convert `/` to `.`
