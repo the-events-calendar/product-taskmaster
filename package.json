@@ -22,6 +22,7 @@
     "gulp-uglify": "^3.0.1",
     "gulp-vinyl-zip": "^2.1.0",
     "gulp-wp-pot": "^2.3.2",
+    "mini-css-extract-plugin": "^0.4.4",
     "postcss-hexrgba": "^1.0.1",
     "postcss-import": "^12.0.1",
     "postcss-mixins": "^6.2.0",
@@ -31,6 +32,7 @@
     "request": "^2.88.0",
     "require-dir": "^1.1.0",
     "run-sequence": "^2.2.1",
+    "unminified-webpack-plugin": "^2.0.0",
     "webpack-stream": "^5.1.1",
     "yargs": "^12.0.2"
   },
