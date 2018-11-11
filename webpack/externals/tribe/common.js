@@ -1,21 +1,21 @@
-const { getDirectoryNames } = require( '../../utils/directories' );
-const { resolve } = require( 'path' );
+// NOTE: This must be kept in sync with `tribe-common` repo `src/modules` directories
+// any new directories will need to be added here as well.
+const entries = [
+	'data',
+	'elements',
+	'hoc',
+	'icons',
+	'store',
+	'utils',
+];
 
-const directories = getDirectoryNames(
-	resolve( __dirname, '../../../../../src/modules' )
+module.exports = entries.reduce(
+	( result, entry ) => {
+		result[ `@moderntribe/common/${ entry }` ] = {
+			var: `tribe.common.${ entry }`,
+			root: [ 'tribe', 'common', entry ],
+		};
+		return result;
+	},
+	{}
 );
-
-const generateExternals = ( entries ) => (
-	entries.reduce(
-		( result, entry ) => {
-			result[ `@moderntribe/common/${ entry }` ] = {
-				var: `tribe.common.${ entry }`,
-				root: [ 'tribe', 'common', entry ],
-			};
-			return result;
-		},
-		{}
-	)
-);
-
-module.exports = {};
