@@ -1,21 +1,12 @@
-// NOTE: This must be kept in sync with `events-pro` repo `/src/modules` directories
-// any new directories will need to be added here as well.
-const entries = [
-	'blocks',
-	'data',
-	'editor',
-	'elements',
-	'hoc',
-	'icons',
-];
+const REGEX = /^@moderntribe\/events-pro\//;
 
-module.exports = entries.reduce(
-	( result, entry ) => {
-		result[ `@moderntribe/events-pro/${ entry }` ] = {
-			var: `tribe.events-pro.${ entry }`,
-			root: [ 'tribe', 'events-pro', entry ],
-		};
-		return result;
-	},
-	{}
-);
+module.exports = function( context, request, callback ) {
+	if ( REGEX.test( request ) ) {
+		const path = request
+			.replace( /\//g, '.' ) // Convert `/` to `.`
+			.replace( '@moderntribe', 'tribe' );
+
+		return callback( null, `var ${ path }` );
+	}
+	callback();
+};

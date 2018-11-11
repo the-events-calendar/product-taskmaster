@@ -1,21 +1,12 @@
-// NOTE: This must be kept in sync with `the-events-calendar` repo `/src/modules` directories
-// any new directories will need to be added here as well.
-const entries = [
-	'blocks',
-	'data',
-	'editor',
-	'elements',
-	'hoc',
-	'icons',
-];
+const REGEX = /^@moderntribe\/events\//;
 
-module.exports = entries.reduce(
-	( result, entry ) => {
-		result[ `@moderntribe/events/${ entry }` ] = {
-			var: `tribe.events.${ entry }`,
-			root: [ 'tribe', 'events', entry ],
-		};
-		return result;
-	},
-	{}
-);
+module.exports = function( context, request, callback ) {
+	if ( REGEX.test( request ) ) {
+		const path = request
+			.replace( /\//g, '.' ) // Convert `/` to `.`
+			.replace( '@moderntribe', 'tribe' );
+
+		return callback( null, `var ${ path }` );
+	}
+	callback();
+};
