@@ -10,6 +10,7 @@ module.exports = function( gulp ) {
 					'compress-js',
 					'compress-css'
 				],
+				'webpack',
 				'zip',
 				callback
 			);
