@@ -1,7 +1,10 @@
 module.exports = function( gulp ) {
-	'use strict';
+	const run = require( 'gulp-run-command' );
 
-	var run = require( 'gulp-run-command' );
+	try {
+		gulp.task( 'webpack', run.default( 'npm run build:common' ) );
+	} catch ( error ) {
+	}
 
 	gulp.task( 'webpack', run.default( 'npm run build:webpack' ) );
 };
