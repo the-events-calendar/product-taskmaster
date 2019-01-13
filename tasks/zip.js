@@ -14,13 +14,12 @@ module.exports = function( gulp ) {
 
 		try {
 			commonZipInclude = JSON.parse( fs.readFileSync( './common/package-whitelist.json' ) );
-			commonZipInclude.map( fileName => 'common/' + filename );
+			commonZipInclude = commonZipInclude.map( fileName => 'common/' + filename );
 		} catch( e ) {
 			// the file doesn't exists
 			console.log( e );
 		}
 
-		console.log( commonZipInclude );
 		console.log( [ ...zipInclude, ...commonZipInclude ] );
 
 		sync.mkdir( json._zipfoldername );
