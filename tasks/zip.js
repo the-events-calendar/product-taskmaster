@@ -14,7 +14,7 @@ module.exports = function( gulp ) {
 
 		try {
 			commonZipInclude = JSON.parse( fs.readFileSync( './common/package-whitelist.json' ) );
-			commonZipInclude = commonZipInclude.map( fileName => 'common/' + filename );
+			commonZipInclude = commonZipInclude.map( fileName => 'common/' + fileName );
 		} catch( e ) {
 			// the file doesn't exists
 			console.log( e );
