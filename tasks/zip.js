@@ -14,6 +14,8 @@ module.exports = function( gulp ) {
 
 		try {
 			commonZipInclude = JSON.parse( fs.readFileSync( './common/package-whitelist.json' ) );
+			// Remove the base file for the common plugin
+			commonZipInclude = commonZipInclude.filter( fileName => 'tribe-common.php' !== fileName )
 			commonZipInclude = commonZipInclude.map( fileName => 'common/' + fileName );
 		} catch( e ) {
 			// the file doesn't exists
