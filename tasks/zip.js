@@ -22,8 +22,6 @@ module.exports = function( gulp ) {
 			console.log( e );
 		}
 
-		console.log( [ ...zipInclude, ...commonZipInclude ] );
-
 		sync.mkdir( json._zipfoldername );
 		return gulp.src( [ ...zipInclude, ...commonZipInclude ], { base: '.' } )
 			.pipe( gulp.dest( json._zipfoldername ) );
