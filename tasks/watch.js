@@ -3,13 +3,14 @@ module.exports = function( gulp ) {
 
 	var cssnano     = require( 'gulp-cssnano' );
 	var fs          = require( 'fs' );
-	var gutil       = require( 'gulp-util' );
+	var c           = require( 'ansi-colors' );
 	var livereload  = require( 'gulp-livereload' );
+	var log         = require( 'fancy-log' );
 	var rename      = require( 'gulp-rename' );
 	var uglify      = require( 'gulp-uglify' );
 	var header      = require( 'gulp-header' );
 	var postcss     = require( 'gulp-postcss' );
-	var cssnext     = require( 'postcss-cssnext' );
+	var presetEnv   = require( 'postcss-preset-env' );
 	var cssimport   = require( 'postcss-import' );
 	var cssnested   = require( 'postcss-nested' );
 	var cssmixins   = require( 'postcss-mixins' );
@@ -44,7 +45,7 @@ module.exports = function( gulp ) {
 					cssimport(),
 					cssmixins(),
 					cssnested(),
-					cssnext(),
+					presetEnv(),
 					cssmqpacker(),
 				];
 
@@ -119,7 +120,7 @@ module.exports = function( gulp ) {
 			css_dir + '/*.css'
 		] ).on( 'change', function( file ) {
 			livereload.changed( file.path );
-			gutil.log( gutil.colors.yellow( 'File changed (' + file.path + ')' ) );
+			log( c.yellow( 'File changed (' + file.path + ')' ) );
 		} );
 	};
 
