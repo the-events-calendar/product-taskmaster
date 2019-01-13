@@ -17,7 +17,11 @@ module.exports = function( gulp ) {
 			commonZipInclude.map( fileName => 'common/' + filename );
 		} catch( e ) {
 			// the file doesn't exists
+			console.log( e );
 		}
+
+		console.log( commonZipInclude );
+		console.log( [ ...zipInclude, ...commonZipInclude ] );
 
 		sync.mkdir( json._zipfoldername );
 		return gulp.src( [ ...zipInclude, ...commonZipInclude ], { base: '.' } )
