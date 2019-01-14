@@ -1,8 +1,12 @@
 /* eslint-disable max-len, no-console */
 const https = require( 'https' );
+const { execSync } = require( 'child_process' );
+let ref = execSync( 'cd common && git rev-parse --abbrev-ref HEAD' );
+if ( 'HEAD' === ref ) {
+	ref = execSync( 'cd common && git rev-parse --verify HEAD' );
+}
 
-// TODO: Change to use master branch
-const URL = 'https://raw.githubusercontent.com/moderntribe/tribe-common/task/gutenberg-merge/package.json';
+const URL = `https://raw.githubusercontent.com/moderntribe/tribe-common/${ref}/package.json`;
 
 module.exports = new Promise( ( resolve, reject ) => {
 	https.get( URL, response => {
