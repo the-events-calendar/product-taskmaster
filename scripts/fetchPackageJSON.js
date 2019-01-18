@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-console */
 const https = require( 'https' );
-const { execSync } = require( 'child_process' );
+const fs = require( 'fs' );
 const { spawnSync } = require( 'child_process' );
 let ref;
 
