@@ -1,9 +1,9 @@
 module.exports = function( gulp ) {
 	'use strict';
 
-	var fs     = require( 'fs' );
-	var uglify = require( 'gulp-uglify' );
-	var rename = require( 'gulp-rename' );
+	const fs     = require( 'fs' );
+	const uglify = require( 'gulp-uglify-es' ).default;
+	const rename = require( 'gulp-rename' );
 
 	var task = function() {
 		var dir = 'src/resources/js';
