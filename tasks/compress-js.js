@@ -20,10 +20,11 @@ module.exports = function( gulp ) {
 		] )
 		.pipe( uglify().on( 'error', function( e ){
             console.log( {
-            	message: e.message,
+            	filename: e.filename,
             	line: e.line,
             	col: e.col,
             	name: e.name,
+            	message: e.message,
             } );
             return this.end();
          } ) )
