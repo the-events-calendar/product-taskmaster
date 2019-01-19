@@ -19,7 +19,12 @@ module.exports = function( gulp ) {
 			'!' + dir + '/*.min.js'
 		] )
 		.pipe( uglify().on( 'error', function( e ){
-            console.log( e );
+            console.log( {
+            	message: e.message,
+            	line: e.line,
+            	col: e.col,
+            	name: e.name,
+            } );
             return this.end();
          } ) )
 		.pipe(
