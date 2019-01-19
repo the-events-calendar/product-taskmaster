@@ -18,8 +18,7 @@ module.exports = function( gulp ) {
 			commonZipInclude = commonZipInclude.filter( fileName => 'tribe-common.php' !== fileName )
 			commonZipInclude = commonZipInclude.map( fileName => 'common/' + fileName );
 		} catch( e ) {
-			// the file doesn't exists
-			console.log( e );
+			// We didnt have common
 		}
 
 		sync.mkdir( json._zipfoldername );
