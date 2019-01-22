@@ -47,7 +47,17 @@ module.exports = function( gulp ) {
 
 	// this does the zipping
 	gulp.task( 'zip-do-zip', function() {
-		let json = JSON.parse( fs.readFileSync( './package.json' ) );
+		let packageContents = fs.readFileSync( './package.json', 'utf8' );
+
+		let json = null;
+
+		try {
+			json = JSON.parse( packageContents );
+		} catch( e ) {
+			console.log( packageContents.toString() )
+
+			throw e;
+		}
 
 		return gulp.src( json._zipfoldername + '/**/*', { base: '.' } )
 			.pipe( zip( json._zipname + '.' + json.version + '.zip' ) )
@@ -56,7 +66,17 @@ module.exports = function( gulp ) {
 
 	// this cleans up the trash
 	gulp.task( 'zip-purge-build-dir', function( cb ) {
-		let json = JSON.parse( fs.readFileSync( './package.json' ) );
+		let packageContents = fs.readFileSync( './package.json', 'utf8' );
+
+		let json = null;
+
+		try {
+			json = JSON.parse( packageContents );
+		} catch( e ) {
+			console.log( packageContents.toString() )
+
+			throw e;
+		}
 
 		sync.remove( json._zipfoldername );
 
