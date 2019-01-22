@@ -8,8 +8,29 @@ module.exports = function( gulp ) {
 
 	// this task copies files we'll zip into a build directory
 	gulp.task( 'zip-copy-files', function() {
-		let json = JSON.parse( fs.readFileSync( './package.json' ) );
-		let zipInclude = JSON.parse( fs.readFileSync( './package-whitelist.json' ) );
+		let packageContents = fs.readFileSync( './package.json' );
+		let packageWhitelistContents = fs.readFileSync( './package-whitelist.json' )
+		let json = null;
+		let zipInclude = [];
+
+		try {
+			json = JSON.parse( packageContents );
+		} catch( e ) {
+			console.log( e, packageContents );
+
+			// If we fail to read the package we Error and bail
+			return;
+		}
+
+		try {
+			let zipInclude = JSON.parse( packageWhitelistContents );
+		} catch( e ) {
+			console.log( e, packageContents );
+
+			// If we fail to read the package-whitelist we Error and bail
+			return;
+		}
+
 		let commonZipInclude = [];
 
 		try {
