@@ -1,43 +1,33 @@
 module.exports = function( gulp ) {
 	'use strict';
 
-	let fs       = require( 'fs' );
-	let zip      = require( 'gulp-vinyl-zip' ).zip;
-	let sync     = require( 'fs-sync' );
-	let sequence = require( 'run-sequence' ).use( gulp );
+	const fs        = require( 'fs' );
+	const zip       = require( 'gulp-vinyl-zip' ).zip;
+	const sync      = require( 'fs-sync' );
+	const sequence  = require( 'run-sequence' ).use( gulp );
+	const parseJson = require( 'json-parse-better-errors' )
 
 	// this task copies files we'll zip into a build directory
 	gulp.task( 'zip-copy-files', function() {
 		let packageContents = fs.readFileSync( './package.json', 'utf8' );
 		let packageWhitelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
-		let json = null;
-		let zipInclude = [];
+		let json = parseJson( packageContents );
+		let zipInclude = parseJson( packageWhitelistContents );
 
 		try {
-			json = JSON.parse( packageContents );
+			commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
 		} catch( e ) {
-			console.log( packageContents.toString() )
-
-			throw e;
-		}
-
-		try {
-			let zipInclude = JSON.parse( packageWhitelistContents );
-		} catch( e ) {
-			console.log( packageWhitelistContents.toString() )
-
-			throw e;
+			// We didnt have common we avoid failing
 		}
 
 		let commonZipInclude = [];
 
-		try {
-			commonZipInclude = JSON.parse( fs.readFileSync( './common/package-whitelist.json', 'utf8' ) );
+		// Make sure if we have common we pull that content in
+		if ( commonZipContents ) {
+			commonZipInclude = parseJson( commonZipContents );
 			// Remove the base file for the common plugin
 			commonZipInclude = commonZipInclude.filter( fileName => 'tribe-common.php' !== fileName )
 			commonZipInclude = commonZipInclude.map( fileName => 'common/' + fileName );
-		} catch( e ) {
-			// We didnt have common
 		}
 
 		sync.mkdir( json._zipfoldername );
@@ -48,16 +38,8 @@ module.exports = function( gulp ) {
 	// this does the zipping
 	gulp.task( 'zip-do-zip', function() {
 		let packageContents = fs.readFileSync( './package.json', 'utf8' );
+		let json = parseJson( packageContents );
 
-		let json = null;
-
-		try {
-			json = JSON.parse( packageContents );
-		} catch( e ) {
-			console.log( packageContents.toString() )
-
-			throw e;
-		}
 
 		return gulp.src( json._zipfoldername + '/**/*', { base: '.' } )
 			.pipe( zip( json._zipname + '.' + json.version + '.zip' ) )
@@ -67,16 +49,7 @@ module.exports = function( gulp ) {
 	// this cleans up the trash
 	gulp.task( 'zip-purge-build-dir', function( cb ) {
 		let packageContents = fs.readFileSync( './package.json', 'utf8' );
-
-		let json = null;
-
-		try {
-			json = JSON.parse( packageContents );
-		} catch( e ) {
-			console.log( packageContents.toString() )
-
-			throw e;
-		}
+		let json = parseJson( packageContents );
 
 		sync.remove( json._zipfoldername );
 
