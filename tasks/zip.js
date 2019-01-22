@@ -13,6 +13,7 @@ module.exports = function( gulp ) {
 		let packageWhitelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
 		let json = parseJson( packageContents );
 		let zipInclude = parseJson( packageWhitelistContents );
+		let commonZipContents;
 
 		try {
 			commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
