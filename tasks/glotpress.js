@@ -56,15 +56,11 @@ module.exports = function( gulp ) {
 							return info.hasOwnProperty( key ) ? info[ key ] : '';
 						} );
 
-						var request_options = {
-							file    : filename,
-							url     : url,
-							timeout : 360
-						};
-
 						download( {
 							file: filename,
 							url: url
+						}, {
+							timeout : 360
 						} )
 						.pipe( gulp.dest( 'lang/' ) );
 					}
