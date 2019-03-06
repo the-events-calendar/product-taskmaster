@@ -58,7 +58,7 @@ module.exports = function( gulp ) {
 
 						var request_options = {
 							file    : filename,
-							url     : url
+							url     : url,
 							timeout : 360
 						};
 
