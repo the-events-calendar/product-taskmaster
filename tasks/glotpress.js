@@ -60,7 +60,7 @@ module.exports = function( gulp ) {
 							file: filename,
 							url: url
 						}, {
-							timeout : 360
+							timeout : 4 * 60 * 1000 /* 4 minutes in milliseconds */
 						} )
 						.pipe( gulp.dest( 'lang/' ) );
 					}
