@@ -16,7 +16,7 @@ module.exports = function( gulp ) {
 			cssimport(),
 			cssmixins(),
 			cssnested(),
-			presetEnv(),
+			presetEnv( { stage: 0 } ),
 			cssmqpacker(),
 			csshexrgba()
 		];
