@@ -33,6 +33,7 @@
     "postcss-mixins": "^6.2.0",
     "postcss-nested": "^4.1.0",
     "postcss-preset-env": "^6.2.0",
+    "postcss-selector-parser": "^6.0.2",
     "prettier": "^1.15.1",
     "request": "^2.88.0",
     "require-dir": "^1.1.0",
