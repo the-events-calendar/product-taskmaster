@@ -6,7 +6,6 @@ module.exports = function( gulp ) {
 	var postcssPresetEnv = require( 'postcss-preset-env' );
 	var postcssImport = require( 'postcss-import' );
 	var postcssMixins = require( 'postcss-mixins' );
-	var postcssCustomProperties = require( 'postcss-custom-properties' );
 	var postcssHexrgba = require( 'postcss-hexrgba' );
 	var postcssNested = require( 'postcss-nested' );
 	var postcssInlineSvg = require( 'postcss-inline-svg' );
@@ -16,15 +15,14 @@ module.exports = function( gulp ) {
 
 	var task = function() {
 		var processors = [
-			postcssImport(),
-			postcssMixins(),
-			postcssCustomProperties(),
-			postcssHexrgba(),
-			postcssNested(),
-			postcssInlineSvg(),
-			postcssPresetEnv( { stage: 0 } ),
-			postcssCalc(),
-			cssMqpacker(),
+			postcssImport,
+			postcssMixins,
+			postcssNested,
+			postcssInlineSvg,
+			postcssPresetEnv( { stage: 0, preserve: false } ),
+			postcssCalc,
+			postcssHexrgba,
+			cssMqpacker,
 		];
 
 		var banner = [
