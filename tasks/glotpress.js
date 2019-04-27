@@ -19,6 +19,11 @@ module.exports = function( gulp ) {
 			filter     : json._glotPressFilter
 		};
 
+		// Prevent wp.org URLs
+		if ( options.url.indexOf( 'translate.wordpress.org' ) ) {
+			return cb();
+		}
+
 		var api_url = options.url + '/api/projects/' + options.slug;
 
 		request( api_url, function( error, response, body ) {
