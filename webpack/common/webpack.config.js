@@ -12,7 +12,8 @@ const plugins = isProduction ? [ new UnminifiedWebpackPlugin() ] : [];
 
 module.exports = {
 	devtool: (
-		isProduction ? 'source-map' : 'eval-source-map'
+		// We shouldn't ship source maps
+		isProduction ? false : 'eval-source-map'
 	),
 	externals,
 	output: {
