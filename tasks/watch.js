@@ -1,15 +1,15 @@
 module.exports = function( gulp ) {
 	'use strict';
 
-	var cssnano     = require( 'gulp-cssnano' );
-	var fs          = require( 'fs' );
-	var c           = require( 'ansi-colors' );
-	var livereload  = require( 'gulp-livereload' );
-	var log         = require( 'fancy-log' );
-	var rename      = require( 'gulp-rename' );
-	var uglify      = require( 'gulp-uglify-es' ).default;
-	var header      = require( 'gulp-header' );
-	var postcss     = require( 'gulp-postcss' );
+	var cssnano = require( 'gulp-cssnano' );
+	var fs = require( 'fs' );
+	var c = require( 'ansi-colors' );
+	var livereload = require( 'gulp-livereload' );
+	var log = require( 'fancy-log' );
+	var rename = require( 'gulp-rename' );
+	var uglify = require( 'gulp-uglify-es' ).default;
+	var header = require( 'gulp-header' );
+	var postcss = require( 'gulp-postcss' );
 	var postcssPresetEnv = require( 'postcss-preset-env' );
 	var postcssImport = require( 'postcss-import' );
 	var postcssMixins = require( 'postcss-mixins' );
