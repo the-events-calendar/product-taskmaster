@@ -38,7 +38,7 @@ module.exports = function( gulp ) {
 		// watch for changes to postcss files and compile them
 		gulp.watch(
 			[
-				postcss_dir + '/*.pcss',
+				postcss_dir + '/**/*.pcss',
 			],
 			function() {
 				var processors = [
