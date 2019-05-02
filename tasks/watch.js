@@ -11,7 +11,7 @@ module.exports = function( gulp ) {
 	var header = require( 'gulp-header' );
 	var postcss = require( 'gulp-postcss' );
 	var postcssPresetEnv = require( 'postcss-preset-env' );
-	var postcssImport = require( 'postcss-import' );
+	var postcssImport = require( 'postcss-partial-import' );
 	var postcssMixins = require( 'postcss-mixins' );
 	var postcssHexrgba = require( 'postcss-hexrgba' );
 	var postcssNested = require( 'postcss-nested' );
@@ -45,7 +45,7 @@ module.exports = function( gulp ) {
 			],
 			function() {
 				var processors = [
-					postcssImport,
+					postcssImport( { extension: '.pcss' } ),
 					postcssMixins,
 					postcssNested,
 					postcssPresetEnv( { stage: 0, preserve: false } ),
