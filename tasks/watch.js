@@ -1,20 +1,23 @@
 module.exports = function( gulp ) {
 	'use strict';
 
-	var cssnano     = require( 'gulp-cssnano' );
-	var fs          = require( 'fs' );
-	var c           = require( 'ansi-colors' );
-	var livereload  = require( 'gulp-livereload' );
-	var log         = require( 'fancy-log' );
-	var rename      = require( 'gulp-rename' );
-	var uglify      = require( 'gulp-uglify-es' ).default;
-	var header      = require( 'gulp-header' );
-	var postcss     = require( 'gulp-postcss' );
-	var presetEnv   = require( 'postcss-preset-env' );
-	var cssimport   = require( 'postcss-import' );
-	var cssnested   = require( 'postcss-nested' );
-	var cssmixins   = require( 'postcss-mixins' );
-	var cssmqpacker = require( 'css-mqpacker' );
+	var cssnano = require( 'gulp-cssnano' );
+	var fs = require( 'fs' );
+	var c = require( 'ansi-colors' );
+	var livereload = require( 'gulp-livereload' );
+	var log = require( 'fancy-log' );
+	var rename = require( 'gulp-rename' );
+	var uglify = require( 'gulp-uglify-es' ).default;
+	var header = require( 'gulp-header' );
+	var postcss = require( 'gulp-postcss' );
+	var postcssPresetEnv = require( 'postcss-preset-env' );
+	var postcssImport = require( 'postcss-import' );
+	var postcssMixins = require( 'postcss-mixins' );
+	var postcssHexrgba = require( 'postcss-hexrgba' );
+	var postcssNested = require( 'postcss-nested' );
+	var postcssInlineSvg = require( 'postcss-inline-svg' );
+	var postcssCalc = require( 'postcss-calc' );
+	var cssMqpacker = require( 'css-mqpacker' );
 
 	var task = function() {
 		livereload.listen();
@@ -38,15 +41,18 @@ module.exports = function( gulp ) {
 		// watch for changes to postcss files and compile them
 		gulp.watch(
 			[
-				postcss_dir + '/*.pcss',
+				postcss_dir + '/**/*.pcss',
 			],
 			function() {
 				var processors = [
-					cssimport(),
-					cssmixins(),
-					cssnested(),
-					presetEnv(),
-					cssmqpacker(),
+					postcssImport,
+					postcssMixins,
+					postcssNested,
+					postcssPresetEnv( { stage: 0, preserve: false } ),
+					postcssInlineSvg,
+					postcssCalc,
+					postcssHexrgba,
+					cssMqpacker,
 				];
 
 				var banner = [

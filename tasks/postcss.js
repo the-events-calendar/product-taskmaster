@@ -1,24 +1,28 @@
 module.exports = function( gulp ) {
 	'use strict';
 
-	var header      = require('gulp-header');
-	var postcss     = require( 'gulp-postcss' );
-	var presetEnv   = require( 'postcss-preset-env' );
-	var cssimport   = require( 'postcss-import' );
-	var cssnested   = require( 'postcss-nested' );
-	var cssmixins   = require( 'postcss-mixins' );
-	var csshexrgba  = require( 'postcss-hexrgba' );
-	var cssmqpacker = require( 'css-mqpacker' );
-	var rename      = require( 'gulp-rename' );
+	var header = require( 'gulp-header' );
+	var postcss = require( 'gulp-postcss' );
+	var postcssPresetEnv = require( 'postcss-preset-env' );
+	var postcssImport = require( 'postcss-import' );
+	var postcssMixins = require( 'postcss-mixins' );
+	var postcssHexrgba = require( 'postcss-hexrgba' );
+	var postcssNested = require( 'postcss-nested' );
+	var postcssInlineSvg = require( 'postcss-inline-svg' );
+	var postcssCalc = require( 'postcss-calc' );
+	var cssMqpacker = require( 'css-mqpacker' );
+	var rename = require( 'gulp-rename' );
 
 	var task = function() {
 		var processors = [
-			cssimport(),
-			cssmixins(),
-			cssnested(),
-			presetEnv(),
-			cssmqpacker(),
-			csshexrgba()
+			postcssImport,
+			postcssMixins,
+			postcssNested,
+			postcssPresetEnv( { stage: 0, preserve: false } ),
+			postcssInlineSvg,
+			postcssCalc,
+			postcssHexrgba,
+			cssMqpacker,
 		];
 
 		var banner = [
