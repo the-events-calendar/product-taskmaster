@@ -11,9 +11,8 @@ if ( fs.existsSync( process.cwd() + '/common' ) ) {
 	// If Common is not a branch, it will required a second command
 	if ( 'HEAD' === ref ) {
 		ref = spawnSync( 'git', [ 'rev-parse', '--verify', 'HEAD' ], { shell: true, cwd: process.cwd() + '/common' } );
+		ref = ref.stdout.toString().trim();
 	}
-
-	ref = ref.stdout.toString().trim();
 } else {
 	ref = spawnSync( 'git', [ 'rev-parse', '--abbrev-ref', 'HEAD' ], { shell: true, cwd: process.cwd() } );
 	ref = ref.stdout.toString().trim();
