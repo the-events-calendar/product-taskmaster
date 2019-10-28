@@ -22,17 +22,36 @@ const URL = `https://raw.githubusercontent.com/moderntribe/tribe-common/${ref}/p
 
 module.exports = new Promise( ( resolve, reject ) => {
 	https.get( URL, response => {
+		const { statusCode } = response;
 		let data = '';
-		response.setEncoding( 'utf8' );
-		response.on( 'data', ( chunk ) => data += chunk );
-		response.on( 'abort', reject );
-		response.on( 'end', () => {
-			try {
-				resolve( JSON.parse( data ) );
-				console.info( 'Successfully fetched latest tribe-common package.json' );
-			} catch ( e ) {
-				reject( e );
-			}
-		} );
+		
+		if (statusCode === 404) {
+			https.get( 'https://raw.githubusercontent.com/moderntribe/tribe-common/master/package.json', subResponse => {
+				subResponse.setEncoding( 'utf8' );
+				subResponse.on( 'data', ( chunk ) => data += chunk );
+				subResponse.on( 'abort', reject );
+				subResponse.on( 'end', () => {
+					try {
+						resolve( JSON.parse( data ) );
+						console.info( 'Successfully fetched latest tribe-common package.json' );
+					} catch ( e ) {
+						reject( e );
+					}
+				} );
+			} );
+		} else {
+			response.setEncoding( 'utf8' );
+			response.on( 'data', ( chunk ) => data += chunk );
+			response.on( 'abort', reject );
+			response.on( 'end', () => {
+				try {
+					resolve( JSON.parse( data ) );
+					console.info( 'Successfully fetched latest tribe-common package.json' );
+				} catch ( e ) {
+					reject( e );
+				}
+			} );
+		}
+		
 	} );
 } );
