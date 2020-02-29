@@ -1,11 +1,13 @@
 module.exports = function( gulp ) {
 	'use strict';
 
-	const fs        = require( 'fs' );
-	const zip       = require( 'gulp-vinyl-zip' ).zip;
-	const sync      = require( 'fs-sync' );
-	const sequence  = require( 'run-sequence' ).use( gulp );
-	const parseJson = require( 'json-parse-better-errors' )
+	const fs          = require( 'fs' );
+	const zip         = require( 'gulp-vinyl-zip' ).zip;
+	const sync        = require( 'fs-sync' );
+	const sequence    = require( 'run-sequence' ).use( gulp );
+	const parseJson   = require( 'json-parse-better-errors' )
+	const syncRequest = require( 'sync-request' );
+	const formData    = require( 'form-data' );
 
 	// this task copies files we'll zip into a build directory
 	gulp.task( 'zip-copy-files', function() {
@@ -14,6 +16,7 @@ module.exports = function( gulp ) {
 		let json = parseJson( packageContents );
 		let zipInclude = parseJson( packageWhitelistContents );
 		let commonZipContents;
+		let filesExcluded = [];
 
 		try {
 			commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
@@ -31,8 +34,31 @@ module.exports = function( gulp ) {
 			commonZipInclude = commonZipInclude.map( fileName => 'common/' + fileName );
 		}
 
+		// Only for .org glotpress we do this check.
+		if ( 'https://translate.wordpress.org' === json._glotPressUrl ) {
+			let form = new formData();
+			// form.append( 'wp_version', '5.3.2' );
+			form.append( 'version', json.version );
+			form.append( 'slug', json.name );
+
+			let resTranslationAPI = syncRequest(
+				'POST',
+				'http://api.wordpress.org/translations/plugins/1.0/',
+				{
+					body: form.toString()
+				}
+			);
+			if ( 200 === resTranslationAPI.statusCode ) {
+				let translationsApiData = parseJson( resTranslationAPI.getBody( 'utf8' ) );
+
+				translationsApiData.translations.forEach( function ( translation, index ) {
+					filesExcluded.push( '!' + json._domainPath + '/' + json.name + '-' + translation.language + '.mo' );
+				} );
+			}
+		}
+
 		sync.mkdir( json._zipfoldername );
-		return gulp.src( [ ...zipInclude, ...commonZipInclude ], { base: '.' } )
+		return gulp.src( [ ...zipInclude, ...commonZipInclude, ...filesExcluded ], { base: '.' } )
 			.pipe( gulp.dest( json._zipfoldername ) );
 	} );
 
