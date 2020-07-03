@@ -13,7 +13,7 @@ module.exports = function( gulp ) {
 		let packageSafeListContents;
 
 		try {
-			if ( fs.existsSync( './package-safelist.json' ) ) {
+			if ( fs.accessSync( './package-safelist.json', fs.constants.F_OK ) ) {
 				packageSafeListContents = fs.readFileSync( './package-safelist.json', 'utf8' )
 			} else {
 				packageSafeListContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
@@ -28,7 +28,7 @@ module.exports = function( gulp ) {
 		let commonZipContents;
 
 		try {
-			if ( fs.existsSync( './common/package-safelist.json' ) ) {
+			if ( fs.accessSync( './common/package-safelist.json', fs.constants.F_OK ) ) {
 				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
 			} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {{
 				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );

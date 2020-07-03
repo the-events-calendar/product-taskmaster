@@ -110,9 +110,12 @@ gulp pull --branch <branch-you-want-to-pull>
 
 #### zip
 
-This task packages the files indicated by `package-whitelist.json` into
+This task packages the files indicated by `package-safelist.json` into
 a zip file that it places one directory above the plugin's base
 directory.
+
+**Note:**  `package-whitelist` has been deprecated if you have one please rename it to `pacakge-safelist`.
+
 
 ```
 gulp zip
