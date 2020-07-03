@@ -10,15 +10,31 @@ module.exports = function( gulp ) {
 	// this task copies files we'll zip into a build directory
 	gulp.task( 'zip-copy-files', function() {
 		let packageContents = fs.readFileSync( './package.json', 'utf8' );
-		let packageWhitelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
+		let packageSafeListContents;
+
+		try {
+			if ( fs.existsSync( './package-safelist.json' ) ) {
+				packageSafeListContents = fs.readFileSync( './package-safelist.json', 'utf8' )
+			} else {
+				packageSafeListContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
+			}
+
+		} catch( e ) {
+			console.log( e );
+		}
+
 		let json = parseJson( packageContents );
-		let zipInclude = parseJson( packageWhitelistContents );
+		let zipInclude = parseJson( packageSafeListContents );
 		let commonZipContents;
 
 		try {
-			commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
+			if ( fs.existsSync( './common/package-safelist.json' ) ) {
+				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
+			} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {{
+				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
+			}
 		} catch( e ) {
-			// We didnt have common we avoid failing
+			// We didnt havekcommon we avoid failing
 		}
 
 		let commonZipInclude = [];
