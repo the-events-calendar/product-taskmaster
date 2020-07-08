@@ -10,13 +10,13 @@ module.exports = function( gulp ) {
 	// this task copies files we'll zip into a build directory
 	gulp.task( 'zip-copy-files', function() {
 		let packageContents = fs.readFileSync( './package.json', 'utf8' );
-		let packageSafeListContents;
+		let packageSafelistContents;
 
 		try {
 			if ( fs.accessSync( './package-safelist.json', fs.constants.F_OK ) ) {
-				packageSafeListContents = fs.readFileSync( './package-safelist.json', 'utf8' )
+				packageSafelistContents = fs.readFileSync( './package-safelist.json', 'utf8' )
 			} else {
-				packageSafeListContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
+				packageSafelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
 			}
 
 		} catch( e ) {
