@@ -34,7 +34,7 @@ module.exports = function( gulp ) {
 				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
 			}
 		} catch( e ) {
-			// We didnt havekcommon we avoid failing
+			// We didnt have common we avoid failing
 		}
 
 		let commonZipInclude = [];
