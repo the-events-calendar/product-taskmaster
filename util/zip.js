@@ -2,13 +2,13 @@ var fs = require('fs');
 var archiver = require('archiver');
 
 const json          = JSON.parse( fs.readFileSync( 'package.json' ) );
-let zip_safelist;
+let zipSafelist;
 
 try {
 	if ( fs.accessSync( 'package-safelist.json', fs.constants.F_OK ) ) {
-		zip_safelist = JSON.parse( fs.readFileSync( 'package-safelist.json' ) );
+		zipSafelist = JSON.parse( fs.readFileSync( 'package-safelist.json' ) );
 	} else {
-		zip_safelist = JSON.parse( fs.readFileSync( 'package-whitelist.json' ) );
+		zipSafelist = JSON.parse( fs.readFileSync( 'package-whitelist.json' ) );
 	}
 } catch ( e ) {
 	console.log( e );
@@ -31,7 +31,7 @@ archive.on( 'error', function(err) {
 
 archive.pipe(output);
 
-zip_safelist.forEach( function( file ) {
+zipSafelist.forEach( function( file ) {
 	if ( '/' === file.slice( -1 ) ) {
 		archive.directory( file, file );
 		return;
