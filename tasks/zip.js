@@ -24,7 +24,7 @@ module.exports = function( gulp ) {
 		}
 
 		let json = parseJson( packageContents );
-		let zipInclude = parseJson( packageSafeListContents );
+		let zipInclude = parseJson( packageSafelistContents );
 		let commonZipContents;
 
 		try {
