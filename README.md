@@ -114,7 +114,7 @@ This task packages the files indicated by `package-safelist.json` into
 a zip file that it places one directory above the plugin's base
 directory.
 
-**Note:**  `package-whitelist` has been deprecated if you have one please rename it to `package-safelist`.
+**Note:**  `package-whitelist.json` has been deprecated if you have one please rename it to `package-safelist.json`.
 
 
 ```
