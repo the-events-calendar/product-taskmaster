@@ -30,7 +30,7 @@ module.exports = function( gulp ) {
 		try {
 			if ( fs.accessSync( './common/package-safelist.json', fs.constants.F_OK ) ) {
 				commonZipContents = fs.readFileSync( './common/package-safelist.json', 'utf8' );
-			} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {{
+			} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {
 				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
 			}
 		} catch( e ) {
