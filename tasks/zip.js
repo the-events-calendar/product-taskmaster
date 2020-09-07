@@ -15,14 +15,14 @@ module.exports = function( gulp ) {
 		if ( fs.existsSync( './package-safelist.json' ) ) {
 			try {
 				packageSafelistContents = fs.readFileSync( './package-safelist.json', 'utf8' )
-			} catch( e ) {
-				console.error( 'Failed on "./package-safelist.json": ', e );
+			} catch( error ) {
+				console.error( 'Failed on "./package-safelist.json": ', error );
 			}
 		} else if ( fs.existsSync( './package-whitelist.json' ) ) {
 			try {
 				packageSafelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
-			} catch( e ) {
-				console.error( 'Failed on "./package-whitelist.json": ', e );
+			} catch( error ) {
+				console.error( 'Failed on "./package-whitelist.json": ', error );
 			}
 		} else {
 			console.error( 'No package safe list of files were found for the plugin.' );
@@ -35,14 +35,14 @@ module.exports = function( gulp ) {
 		if ( fs.existsSync( './common/package-safelist.json' ) ) {
 			try {
 				commonZipContents = fs.readFileSync( './common/package-safelist.json', 'utf8' )
-			} catch( e ) {
-				console.error( 'Failed on "./common/package-safelist.json": ', e );
+			} catch( error ) {
+				console.error( 'Failed on "./common/package-safelist.json": ', error );
 			}
 		} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {
 			try {
 				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' )
-			} catch( e ) {
-				console.error( 'Failed on "./common/package-whitelist.json": ', e );
+			} catch( error ) {
+				console.error( 'Failed on "./common/package-whitelist.json": ', error );
 			}
 		} else {
 			// Common was not present so we bail.
