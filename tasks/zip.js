@@ -12,29 +12,40 @@ module.exports = function( gulp ) {
 		let packageContents = fs.readFileSync( './package.json', 'utf8' );
 		let packageSafelistContents;
 
-		try {
-			if ( fs.accessSync( './package-safelist.json', fs.constants.F_OK ) ) {
+		if ( fs.existsSync( './package-safelist.json' ) ) {
+			try {
 				packageSafelistContents = fs.readFileSync( './package-safelist.json', 'utf8' )
-			} else {
-				packageSafelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
+			} catch( error ) {
+				console.error( 'Failed on "./package-safelist.json": ', error );
 			}
-
-		} catch( e ) {
-			console.log( e );
+		} else if ( fs.existsSync( './package-whitelist.json' ) ) {
+			try {
+				packageSafelistContents = fs.readFileSync( './package-whitelist.json', 'utf8' )
+			} catch( error ) {
+				console.error( 'Failed on "./package-whitelist.json": ', error );
+			}
+		} else {
+			console.error( 'No package safe list of files were found for the plugin.' );
 		}
 
 		let json = parseJson( packageContents );
 		let zipInclude = parseJson( packageSafelistContents );
 		let commonZipContents;
 
-		try {
-			if ( fs.accessSync( './common/package-safelist.json', fs.constants.F_OK ) ) {
-				commonZipContents = fs.readFileSync( './common/package-safelist.json', 'utf8' );
-			} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {
-				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' );
+		if ( fs.existsSync( './common/package-safelist.json' ) ) {
+			try {
+				commonZipContents = fs.readFileSync( './common/package-safelist.json', 'utf8' )
+			} catch( error ) {
+				console.error( 'Failed on "./common/package-safelist.json": ', error );
 			}
-		} catch( e ) {
-			// We didnt have common we avoid failing
+		} else if ( fs.existsSync( './common/package-whitelist.json' ) ) {
+			try {
+				commonZipContents = fs.readFileSync( './common/package-whitelist.json', 'utf8' )
+			} catch( error ) {
+				console.error( 'Failed on "./common/package-whitelist.json": ', error );
+			}
+		} else {
+			// Common was not present so we bail.
 		}
 
 		let commonZipInclude = [];
