@@ -1,4 +1,5 @@
 const wp = [
+	'block-editor',
 	'blocks',
 	'components',
 	'date',
