@@ -84,14 +84,27 @@ module.exports = function( gulp ) {
 		cb();
 	} );
 
-	let task = function( cb ) {
-		sequence(
+	var task;
+
+	// Gulp is v3.
+	if ( gulp.hasTask ) {
+		task = function( cb ) {
+			sequence(
+				'zip-copy-files',
+				'zip-do-zip',
+				'zip-purge-build-dir',
+				cb
+			);
+		};
+
+	// Gulp is v4.
+	} else {
+		task = gulp.series(
 			'zip-copy-files',
 			'zip-do-zip',
 			'zip-purge-build-dir',
-			cb
 		);
-	};
+	}
 
 	gulp.task( 'zip', task );
 };
