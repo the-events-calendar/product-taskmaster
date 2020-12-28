@@ -59,7 +59,7 @@ module.exports = function( gulp ) {
 		}
 
 		sync.mkdir( json._zipfoldername );
-		return gulp.src( [ ...zipInclude, ...commonZipInclude ], { base: '.' } )
+		return gulp.src( [ ...zipInclude, ...commonZipInclude ], { allowEmpty: true, base: '.' } )
 			.pipe( gulp.dest( json._zipfoldername ) );
 	} );
 
