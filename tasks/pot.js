@@ -17,10 +17,10 @@ module.exports = function( gulp ) {
 
 		return gulp.src( [
 			'**/*.php',
-			'!common/*',
-			'!lang/*',
-			'!tests/*',
-			'!vendor/*'
+			'!common/**',
+			'!lang/**',
+			'!tests/**',
+			'!vendor/**'
 		] )
 		.pipe( sort() )
 		.pipe(
