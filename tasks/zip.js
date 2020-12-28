@@ -4,7 +4,6 @@ module.exports = function( gulp ) {
 	const fs        = require( 'fs' );
 	const zip       = require( 'gulp-vinyl-zip' ).zip;
 	const sync      = require( 'fs-sync' );
-	const sequence  = require( 'run-sequence' ).use( gulp );
 	const parseJson = require( 'json-parse-better-errors' )
 
 	// this task copies files we'll zip into a build directory
