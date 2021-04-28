@@ -1,8 +1,8 @@
 {
-  "name": "product-taskmaster",
+  "name": "@the-events-calendar/product-taskmaster",
   "description": "This is a collection of Modern Tribe product Gulp tasks",
   "version": "0.0.3",
-  "repository": "git@github.com:the-events-calendar/product-taskmaster.git",
+  "repository": "git://github.com/the-events-calendar/product-taskmaster.git",
   "main": "index.js",
   "dependencies": {
     "ansi-colors": "^3.2.1",
