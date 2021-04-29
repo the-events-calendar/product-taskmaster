@@ -1,8 +1,8 @@
 {
-  "name": "product-taskmaster",
+  "name": "@the-events-calendar/product-taskmaster",
   "description": "This is a collection of Modern Tribe product Gulp tasks",
-  "version": "0.0.3",
-  "repository": "git@github.com:moderntribe/product-taskmaster.git",
+  "version": "1.0.0",
+  "repository": "git://github.com/the-events-calendar/product-taskmaster.git",
   "main": "index.js",
   "dependencies": {
     "ansi-colors": "^3.2.1",
@@ -47,6 +47,6 @@
   },
   "devDependencies": {
     "eslint": "^5.9.0",
-    "eslint-config-products": "github:moderntribe/eslint-config-products#v0.1.1"
+    "eslint-config-products": "github:the-events-calendar/eslint-config-products#v0.1.1"
   }
 }

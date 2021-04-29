@@ -18,7 +18,7 @@ if ( fs.existsSync( process.cwd() + '/common' ) ) {
 	ref = ref.stdout.toString().trim();
 }
 
-const URL = `https://raw.githubusercontent.com/moderntribe/tribe-common/${ref}/package.json`;
+const URL = `https://raw.githubusercontent.com/the-events-calendar/tribe-common/${ref}/package.json`;
 
 module.exports = new Promise( ( resolve, reject ) => {
 	https.get( URL, response => {
@@ -26,7 +26,7 @@ module.exports = new Promise( ( resolve, reject ) => {
 		let data = '';
 		
 		if (statusCode === 404) {
-			https.get( 'https://raw.githubusercontent.com/moderntribe/tribe-common/master/package.json', subResponse => {
+			https.get( 'https://raw.githubusercontent.com/the-events-calendar/tribe-common/master/package.json', subResponse => {
 				subResponse.setEncoding( 'utf8' );
 				subResponse.on( 'data', ( chunk ) => data += chunk );
 				subResponse.on( 'abort', reject );
