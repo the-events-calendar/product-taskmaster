@@ -15,8 +15,8 @@ module.exports = function( gulp ) {
 		}
 
 		return gulp.src( [
-			dir + '/*.css',
-			'!' + dir + '/*.min.css',
+			dir + '/**/*.css',
+			'!' + dir + '/**/*.min.css',
 		] )
 		.pipe( cssnano( {
 			'zindex': false
