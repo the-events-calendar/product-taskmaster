@@ -1,15 +1,20 @@
 # Product Taskmaster
 
-This is a collection of Modern Tribe product Gulp tasks
+This is a collection of The Events Calendar product Gulp tasks
 
 ## Installing in a plugin
 
 This repository is meant to be installed via `npm install`. To enable
-that in a repository, simply add the following to your plugin's
-`package.json` in the `devDependencies` section:
+that in a repository, simply run the following command:
 
 ```
-"product-taskmaster": "git+https://github.com/moderntribe/product-taskmaster.git",
+npm install --save-dev @the-events-calendar/product-taskmaster@^1.0.0
+```
+
+or add the following to the `package.json` in the `devDependencies` section:
+
+```
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^1.0.0",
 ```
 
 ### GlotPress
