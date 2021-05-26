@@ -125,3 +125,20 @@ directory.
 ```
 gulp zip
 ```
+
+#### stylelint
+
+This task runs stylelint on the `pcss` files using our stylelint configuration. In the root directory,
+add in the `.stylelintrc` file:
+
+```
+{
+    "extends": "product-taskmaster/config/stylelint"
+}
+```
+
+To run stylelint, run the following:
+
+```
+gulp stylelint
+```
