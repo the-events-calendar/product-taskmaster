@@ -2,6 +2,7 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'wpcalypso',
+		'plugin:import/recommended',
 	],
 	rules: {
 		eqeqeq: [
