@@ -1,10 +1,30 @@
 module.exports = {
+	env: {
+		browser: true,
+		es6: true,
+		jest: true,
+		node: true,
+	},
 	extends: [
 		'eslint:recommended',
 		'wpcalypso',
 		'plugin:import/recommended',
 	],
+	parser: 'babel-eslint',
+	parserOptions: {
+		ecmaFeatures: {
+			experimentalObjectRestSpread: true,
+			jsx: true,
+		},
+		sourceType: 'module',
+	},
 	rules: {
+		camelcase: [
+			'error',
+			{
+				properties: 'never',
+			},
+		],
 		eqeqeq: [
 			'error',
 			'smart',
@@ -32,6 +52,7 @@ module.exports = {
 			},
 		],
 		'import/no-unresolved': 2,
+		'jsdoc/check-values': 0,
 		'wpcalypso/jsx-classname-namespace': 0,
 	},
 };
