@@ -10,7 +10,7 @@ module.exports = function( originalGulp ) {
 			! Array.isArray( filePath ) &&
 			( typeof filePath !== 'string' || ! filePath )
 		) {
-			console.error( '`--filePath` flag must be provided' );
+			console.error( 'At least one path using the `--filePath` flag must be provided' );
 			process.exit(-1);
 		}
 
