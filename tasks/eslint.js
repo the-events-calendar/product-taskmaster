@@ -4,27 +4,28 @@ module.exports = function( originalGulp ) {
 	var gulp = require( 'gulp-param' )( originalGulp, process.argv );
 	var eslint = require( 'gulp-eslint' );
 
-	var task = function( basePath, fix ) {
-		if ( typeof basePath !== 'string' || ! basePath ) {
-			console.error( '`--basePath` flag must be provided' );
+	var task = function( filePath, fix ) {
+		// --filePath flag is either string or array and must be provided.
+		if (
+			! Array.isArray( filePath ) &&
+			( typeof filePath !== 'string' || ! filePath )
+		) {
+			console.error( '`--filePath` flag must be provided' );
 			process.exit(-1);
 		}
 
 		var config = {
-			resolvePluginsRelativeTo: 'node_modules/product-taskmaster',
+			resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
 		};
 
 		if ( typeof fix === 'boolean' ) {
 			config.fix = fix;
 		}
 
-		var filePath = basePath + '/**/*.js';
-
 		return gulp.src( filePath )
 			.pipe( eslint( config ) )
 			.pipe( eslint.format() )
 			.pipe( eslint.failAfterError() )
-			.pipe( gulp.dest( basePath ) );
 	};
 
 	gulp.task( 'eslint', task );
