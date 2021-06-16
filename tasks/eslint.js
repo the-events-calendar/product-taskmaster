@@ -4,7 +4,7 @@ module.exports = function( originalGulp ) {
 	var gulp = require( 'gulp-param' )( originalGulp, process.argv );
 	var eslint = require( 'gulp-eslint' );
 
-	var task = function( filePath, fix ) {
+	var task = function( filePath ) {
 		// --filePath flag is either string or array and must be provided.
 		if (
 			! Array.isArray( filePath ) &&
@@ -17,10 +17,6 @@ module.exports = function( originalGulp ) {
 		var config = {
 			resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
 		};
-
-		if ( typeof fix === 'boolean' ) {
-			config.fix = fix;
-		}
 
 		return gulp.src( filePath )
 			.pipe( eslint( config ) )
