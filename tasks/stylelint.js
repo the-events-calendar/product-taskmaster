@@ -1,9 +1,7 @@
-module.exports = function( originalGulp ) {
+module.exports = function( gulp ) {
 	'use-strict';
 
-	var gulp = require( 'gulp-param' )( originalGulp, process.argv );
 	var stylelint = require( 'gulp-stylelint' );
-	// var postcss_dir = './src/resources/postcss';
 
 	var task = function( filePath ) {
 		// --filePath flag is either string or array and must be provided.

@@ -18,7 +18,7 @@ module.exports = function( gulp ) {
 			postcssImport,
 			postcssMixins,
 			postcssNested,
-			postcssPresetEnv( { stage: 0, preserve: false } ),
+			postcssPresetEnv( { stage: 0, preserve: true } ),
 			postcssInlineSvg,
 			postcssCalc,
 			postcssHexrgba,
