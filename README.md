@@ -133,12 +133,45 @@ add in the `.stylelintrc` file:
 
 ```
 {
-    "extends": "product-taskmaster/config/stylelint"
+    "extends": "@the-events-calendar/product-taskmaster/config/stylelint"
 }
 ```
 
-To run stylelint, run the following:
+To run stylelint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+An example might look like:
 
 ```
-gulp stylelint
+gulp stylelint --filePath 'src/resources/postcss/**/*.pcss'
+```
+
+You can also provide multiple file paths by doing the following:
+
+```
+gulp stylelint --filePath 'src/resources/postcss/base/**/*.pcss' --filePath 'src/resources/postcss/components/**/*.pcss'
+```
+
+#### eslint
+
+This task runs stylelint on the JavaScript files using our eslint configurations.
+Add an `.eslintrc` file in the working repository and extend one of the configurations.
+A relative path from the `.eslintrc` file is required as Product Taskmaster is not
+a standard eslint configuration package:
+
+```
+{
+    "extends": "./node_modules/@the-events-calendar/product-taskmaster/config/eslint.es6.js"
+}
+```
+
+To run eslint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+An example might look like:
+
+```
+gulp eslint --filePath 'src/resources/js/views/**/*.js'
+```
+
+You can also provide multiple file paths by doing the following:
+
+```
+gulp eslint --filePath 'src/resources/js/views/**/*.js' --filePath 'src/modules/**/*.js'
 ```
