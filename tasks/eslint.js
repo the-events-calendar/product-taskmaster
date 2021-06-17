@@ -1,7 +1,6 @@
-module.exports = function( originalGulp ) {
+module.exports = function( gulp ) {
 	'use-strict';
 
-	var gulp = require( 'gulp-param' )( originalGulp, process.argv );
 	var eslint = require( 'gulp-eslint' );
 
 	var task = function( filePath ) {
@@ -14,12 +13,10 @@ module.exports = function( originalGulp ) {
 			process.exit(-1);
 		}
 
-		var config = {
-			resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
-		};
-
 		return gulp.src( filePath )
-			.pipe( eslint( config ) )
+			.pipe( eslint( {
+				resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
+			} ) )
 			.pipe( eslint.format() )
 			.pipe( eslint.failAfterError() )
 	};
