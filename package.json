@@ -5,8 +5,8 @@
   "repository": "git@github.com:the-events-calendar/product-taskmaster.git",
   "main": "index.js",
   "dependencies": {
+    "@babel/eslint-parser": "^7.14.5",
     "ansi-colors": "^3.2.1",
-    "babel-eslint": "^10.1.0",
     "browserslist": "^4.6.3",
     "css-mqpacker": "^7.0.0",
     "eslint": "^7.27.0",
