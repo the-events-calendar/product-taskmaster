@@ -152,10 +152,10 @@ gulp stylelint --filePath 'src/resources/postcss/base/**/*.pcss' --filePath 'src
 
 #### eslint
 
-This task runs stylelint on the JavaScript files using our eslint configurations.
+This task runs ESLint on the JavaScript files using our ESLint configurations.
 Add an `.eslintrc` file in the working repository and extend one of the configurations.
 A relative path from the `.eslintrc` file is required as Product Taskmaster is not
-a standard eslint configuration package:
+a standard ESLint configuration package:
 
 ```
 {
@@ -163,7 +163,7 @@ a standard eslint configuration package:
 }
 ```
 
-To run eslint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+To run ESLint, you'll need to provide a `--filePath` flag to tell gulp where to look.
 An example might look like:
 
 ```
@@ -175,3 +175,7 @@ You can also provide multiple file paths by doing the following:
 ```
 gulp eslint --filePath 'src/resources/js/views/**/*.js' --filePath 'src/modules/**/*.js'
 ```
+
+If you are extending the `eslint.es6.js` or `eslint.react.js` configuration,
+you must have a `.babelrc` file defined in the working repository, as ESLint uses
+the `.babelrc` file to parse the code.
