@@ -10,13 +10,16 @@ module.exports = {
 		'wpcalypso',
 		'plugin:import/recommended',
 	],
-	parser: 'babel-eslint',
+	parser: '@babel/eslint-parser',
 	parserOptions: {
 		ecmaFeatures: {
 			experimentalObjectRestSpread: true,
 			jsx: true,
 		},
 		sourceType: 'module',
+		babelOptions: {
+			configFile: ".babelrc",
+		},
 	},
 	rules: {
 		camelcase: [
