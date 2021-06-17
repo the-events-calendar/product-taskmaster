@@ -153,7 +153,14 @@ gulp stylelint --filePath 'src/resources/postcss/base/**/*.pcss' --filePath 'src
 #### eslint
 
 This task runs ESLint on the JavaScript files using our ESLint configurations.
-Add an `.eslintrc` file in the working repository and extend one of the configurations.
+First, install ESLint as a devDependency in the working repository.
+
+```
+npm install --save-dev eslint
+```
+
+Next, add an 
+`.eslintrc` file in the working repository and extend one of the configurations.
 A relative path from the `.eslintrc` file is required as Product Taskmaster is not
 a standard ESLint configuration package:
 
