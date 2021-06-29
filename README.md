@@ -78,6 +78,22 @@ gulp watch
 These tasks are run from within the main tasks, but they _can_ be run on
 their own!
 
+#### postcss
+
+This task uses PostCSS to build the `.pcss` files into CSS files.
+
+```
+gulp postcss
+```
+
+The command also takes a `--preserve` flag to set whether to preserve custom
+properties or not. By default, they are preserved. To remove custom properties,
+do the following:
+
+```
+gulp postcss --preserve false
+```
+
 #### compress-css
 
 This task uses `gulp-cssnano` to compress CSS files and name the files
