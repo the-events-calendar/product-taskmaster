@@ -38,10 +38,7 @@ module.exports = function( gulp ) {
 			js_dir = 'resources';
 		}
 
-		var preserveFlag = true;
-		if ( 'false' === preserve ) {
-			preserveFlag = false;
-		}
+		var preserveFlag = 'false' !== preserve;
 
 		// watch for changes to postcss files and compile them
 		gulp.watch(

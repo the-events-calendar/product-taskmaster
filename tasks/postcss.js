@@ -14,10 +14,7 @@ module.exports = function( gulp ) {
 	var rename = require( 'gulp-rename' );
 
 	var task = function( preserve ) {
-		var preserveFlag = true;
-		if ( 'false' === preserve ) {
-			preserveFlag = false;
-		}
+		var preserveFlag = 'false' !== preserve;
 
 		var processors = [
 			postcssImport,
