@@ -1,7 +1,7 @@
 module.exports = function( gulp ) {
 	'use-strict';
 
-	var stylelint = require( 'gulp-stylelint' );
+	var eslint = require( 'gulp-eslint' );
 
 	var task = function( filePath ) {
 		// --filePath flag is either string or array and must be provided.
@@ -14,13 +14,12 @@ module.exports = function( gulp ) {
 		}
 
 		return gulp.src( filePath )
-			.pipe( stylelint( {
-				fix: false,
-				reporters: [
-					{ formatter: 'string', console: true },
-				],
-			} ) );
+			.pipe( eslint( {
+				resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
+			} ) )
+			.pipe( eslint.format() )
+			.pipe( eslint.failAfterError() )
 	};
 
-	gulp.task( 'stylelint', task );
-};
+	gulp.task( 'eslint', task );
+}

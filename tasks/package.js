@@ -6,7 +6,7 @@ module.exports = function( gulp ) {
 	// Gulp is v3.
 	if ( gulp.hasTask ) {
 		var sequence = require( 'run-sequence' ).use( gulp );
-		task = function( callback ) {
+		task = function( cb ) {
 			sequence(
 				'pull',
 				'postcss',
@@ -16,7 +16,7 @@ module.exports = function( gulp ) {
 				],
 				'webpack',
 				'zip',
-				callback
+				cb
 			);
 		};
 

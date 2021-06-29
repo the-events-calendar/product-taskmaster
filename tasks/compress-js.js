@@ -18,16 +18,16 @@ module.exports = function( gulp ) {
 			dir + '/*.js',
 			'!' + dir + '/*.min.js'
 		] )
-		.pipe( uglify().on( 'error', function( e ){
-            console.log( {
-            	filename: e.filename,
-            	line: e.line,
-            	col: e.col,
-            	name: e.name,
-            	message: e.message,
-            } );
-            return this.end();
-         } ) )
+		.pipe( uglify().on( 'error', function( e ) {
+			console.log( {
+				filename: e.filename,
+				line: e.line,
+				col: e.col,
+				name: e.name,
+				message: e.message,
+			} );
+			return this.end();
+		} ) )
 		.pipe(
 			rename( {
 				extname: '.min.js'

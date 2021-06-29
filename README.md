@@ -1,15 +1,20 @@
 # Product Taskmaster
 
-This is a collection of Modern Tribe product Gulp tasks
+This is a collection of The Events Calendar product Gulp tasks
 
 ## Installing in a plugin
 
 This repository is meant to be installed via `npm install`. To enable
-that in a repository, simply add the following to your plugin's
-`package.json` in the `devDependencies` section:
+that in a repository, simply run the following command:
 
 ```
-"product-taskmaster": "git+https://github.com/moderntribe/product-taskmaster.git",
+npm install --save-dev @the-events-calendar/product-taskmaster@^1.2.1
+```
+
+or add the following to the `package.json` in the `devDependencies` section:
+
+```
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^1.2.1",
 ```
 
 ### GlotPress
@@ -120,3 +125,64 @@ directory.
 ```
 gulp zip
 ```
+
+#### stylelint
+
+This task runs stylelint on the `pcss` files using our stylelint configuration. In the root directory,
+add in the `.stylelintrc` file:
+
+```
+{
+    "extends": "@the-events-calendar/product-taskmaster/config/stylelint"
+}
+```
+
+To run stylelint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+An example might look like:
+
+```
+gulp stylelint --filePath 'src/resources/postcss/**/*.pcss'
+```
+
+You can also provide multiple file paths by doing the following:
+
+```
+gulp stylelint --filePath 'src/resources/postcss/base/**/*.pcss' --filePath 'src/resources/postcss/components/**/*.pcss'
+```
+
+#### eslint
+
+This task runs ESLint on the JavaScript files using our ESLint configurations.
+First, install ESLint as a devDependency in the working repository.
+
+```
+npm install --save-dev eslint
+```
+
+Next, add an 
+`.eslintrc` file in the working repository and extend one of the configurations.
+A relative path from the `.eslintrc` file is required as Product Taskmaster is not
+a standard ESLint configuration package:
+
+```
+{
+    "extends": "./node_modules/@the-events-calendar/product-taskmaster/config/eslint.es6.js"
+}
+```
+
+To run ESLint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+An example might look like:
+
+```
+gulp eslint --filePath 'src/resources/js/views/**/*.js'
+```
+
+You can also provide multiple file paths by doing the following:
+
+```
+gulp eslint --filePath 'src/resources/js/views/**/*.js' --filePath 'src/modules/**/*.js'
+```
+
+If you are extending the `eslint.es6.js` or `eslint.react.js` configuration,
+you must have a `.babelrc` file defined in the working repository, as ESLint uses
+the `.babelrc` file to parse the code.
