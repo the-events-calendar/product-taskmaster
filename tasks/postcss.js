@@ -13,12 +13,17 @@ module.exports = function( gulp ) {
 	var cssMqpacker = require( 'css-mqpacker' );
 	var rename = require( 'gulp-rename' );
 
-	var task = function() {
+	var task = function( preserve ) {
+		var preserveFlag = true;
+		if ( 'false' === preserve ) {
+			preserveFlag = false;
+		}
+
 		var processors = [
 			postcssImport,
 			postcssMixins,
 			postcssNested,
-			postcssPresetEnv( { stage: 0, preserve: true } ),
+			postcssPresetEnv( { stage: 0, preserve: preserveFlag } ),
 			postcssInlineSvg,
 			postcssCalc,
 			postcssHexrgba,
