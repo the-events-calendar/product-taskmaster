@@ -19,7 +19,7 @@ module.exports = function( gulp ) {
 	var postcssCalc = require( 'postcss-calc' );
 	var cssMqpacker = require( 'css-mqpacker' );
 
-	var task = function() {
+	var task = function( preserve ) {
 		livereload.listen();
 
 		var postcss_dir = 'src/resources/postcss';
@@ -38,6 +38,11 @@ module.exports = function( gulp ) {
 			js_dir = 'resources';
 		}
 
+		var preserveFlag = true;
+		if ( 'false' === preserve ) {
+			preserveFlag = false;
+		}
+
 		// watch for changes to postcss files and compile them
 		gulp.watch(
 			[
@@ -48,7 +53,7 @@ module.exports = function( gulp ) {
 					postcssImport,
 					postcssMixins,
 					postcssNested,
-					postcssPresetEnv( { stage: 0, preserve: true } ),
+					postcssPresetEnv( { stage: 0, preserve: preserveFlag } ),
 					postcssInlineSvg,
 					postcssCalc,
 					postcssHexrgba,
@@ -63,7 +68,7 @@ module.exports = function( gulp ) {
 					' * src/resources/postcss/ file. For more information, check out our engineering',
 					' * docs on how we handle CSS in our engineering docs.',
 					' *',
-					' * @see: http://moderntribe.github.io/products-engineering/css/',
+					' * @see: https://the-events-calendar.github.io/products-engineering/docs/code-standards/css/',
 					' */',
 					'',
 					'',

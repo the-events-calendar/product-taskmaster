@@ -38,7 +38,7 @@ module.exports = function( gulp ) {
 			' * src/resources/postcss/ file. For more information, check out our engineering',
 			' * docs on how we handle CSS in our engineering docs.',
 			' *',
-			' * @see: http://moderntribe.github.io/products-engineering/css/',
+			' * @see: https://the-events-calendar.github.io/products-engineering/docs/code-standards/css/',
 			' */',
 			'',
 			'',
