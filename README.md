@@ -86,9 +86,9 @@ This task uses PostCSS to build the `.pcss` files into CSS files.
 gulp postcss
 ```
 
-The command also takes a `--preserve` flag to set whether to preserve custom
-properties or not. By default, they are preserved. To remove custom properties,
-do the following:
+The command also takes a `--preserve` flag to pass the preserve option or not
+(see the [documentation](https://github.com/csstools/postcss-preset-env#preserve)).
+By default, the preserve option is set to true. To set to false, do the following:
 
 ```
 gulp postcss --preserve false
