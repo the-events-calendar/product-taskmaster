@@ -13,12 +13,14 @@ module.exports = function( gulp ) {
 	var cssMqpacker = require( 'css-mqpacker' );
 	var rename = require( 'gulp-rename' );
 
-	var task = function() {
+	var task = function( preserve ) {
+		var preserveFlag = 'false' !== preserve;
+
 		var processors = [
 			postcssImport,
 			postcssMixins,
 			postcssNested,
-			postcssPresetEnv( { stage: 0, preserve: false } ),
+			postcssPresetEnv( { stage: 0, preserve: preserveFlag } ),
 			postcssInlineSvg,
 			postcssCalc,
 			postcssHexrgba,
@@ -33,7 +35,7 @@ module.exports = function( gulp ) {
 			' * src/resources/postcss/ file. For more information, check out our engineering',
 			' * docs on how we handle CSS in our engineering docs.',
 			' *',
-			' * @see: http://moderntribe.github.io/products-engineering/css/',
+			' * @see: https://the-events-calendar.github.io/products-engineering/docs/code-standards/css/',
 			' */',
 			'',
 			'',

@@ -73,10 +73,34 @@ files, and then communicates the files to livereload.
 gulp watch
 ```
 
+This command also takes a `--preserve` flag to pass the preserve option
+(see the [documentation](https://github.com/csstools/postcss-preset-env#preserve)).
+By default, the preserve option is set to true. To set to false, do the following:
+
+```
+gulp watch --preserve false
+```
+
 ### Minor tasks
 
 These tasks are run from within the main tasks, but they _can_ be run on
 their own!
+
+#### postcss
+
+This task uses PostCSS to build the `.pcss` files into CSS files.
+
+```
+gulp postcss
+```
+
+The command also takes a `--preserve` flag to pass the preserve option
+(see the [documentation](https://github.com/csstools/postcss-preset-env#preserve)).
+By default, the preserve option is set to true. To set to false, do the following:
+
+```
+gulp postcss --preserve false
+```
 
 #### compress-css
 

@@ -1,1 +1,6 @@
+# General Purpose Ignored Files
+.DS_Store
+.idea
 node_modules
+compiler.jar
+*.ps1
