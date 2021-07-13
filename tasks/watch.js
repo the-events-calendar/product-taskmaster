@@ -50,7 +50,14 @@ module.exports = function( gulp ) {
 					postcssImport,
 					postcssMixins,
 					postcssNested,
-					postcssPresetEnv( { stage: 0, preserve: preserveFlag } ),
+					postcssPresetEnv( {
+						stage: 0,
+						feature: {
+							'custom-properties': {
+								preserve: preserveFlag,
+							},
+						},
+					} ),
 					postcssInlineSvg,
 					postcssCalc,
 					postcssHexrgba,
