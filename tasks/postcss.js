@@ -22,10 +22,9 @@ module.exports = function( gulp ) {
 			postcssNested,
 			postcssPresetEnv( {
 				stage: 0,
-				preserve: preserveFlag,
 				feature: {
-					'custom-media-queries': {
-						preserve: false,
+					'custom-properties': {
+						preserve: preserveFlag,
 					},
 				},
 			} ),
