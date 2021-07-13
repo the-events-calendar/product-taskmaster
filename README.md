@@ -8,13 +8,13 @@ This repository is meant to be installed via `npm install`. To enable
 that in a repository, simply run the following command:
 
 ```
-npm install --save-dev @the-events-calendar/product-taskmaster@^1.3.0
+npm install --save-dev @the-events-calendar/product-taskmaster@^1.3.1
 ```
 
 or add the following to the `package.json` in the `devDependencies` section:
 
 ```
-"product-taskmaster": "@the-events-calendar/product-taskmaster@^1.3.0",
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^1.3.1",
 ```
 
 ### GlotPress

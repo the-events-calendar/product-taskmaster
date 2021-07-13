@@ -20,7 +20,15 @@ module.exports = function( gulp ) {
 			postcssImport,
 			postcssMixins,
 			postcssNested,
-			postcssPresetEnv( { stage: 0, preserve: preserveFlag } ),
+			postcssPresetEnv( {
+				stage: 0,
+				preserve: preserveFlag,
+				feature: {
+					'custom-media-queries': {
+						preserve: false,
+					},
+				},
+			} ),
 			postcssInlineSvg,
 			postcssCalc,
 			postcssHexrgba,
