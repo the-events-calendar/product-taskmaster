@@ -14,7 +14,7 @@ module.exports = function( gulp, pkg ) {
 			process.exit(-1);
 		}
 
-		return gulp.src( filePath )
+		return gulp.src( pkg._filePath.stylelint )
 			.pipe( stylelint( {
 				fix: false,
 				reporters: [

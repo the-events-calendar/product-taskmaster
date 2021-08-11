@@ -14,7 +14,7 @@ module.exports = function( gulp, pkg ) {
 			process.exit(-1);
 		}
 
-		return gulp.src( filePath )
+		return gulp.src( pkg._filePath.eslint )
 			.pipe( eslint( {
 				resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
 			} ) )
