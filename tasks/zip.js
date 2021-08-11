@@ -1,16 +1,15 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
-	const fs        = require( 'fs' );
-	const zip       = require( 'gulp-vinyl-zip' ).zip;
-	const sync      = require( 'fs-sync' );
-	const sequence  = require( 'run-sequence' ).use( gulp );
-	const parseJson = require( 'json-parse-better-errors' )
+	var fs = require( 'fs' );
+	var zip = require( 'gulp-vinyl-zip' ).zip;
+	var sync = require( 'fs-sync' );
+	var parseJson = require( 'json-parse-better-errors' )
 
 	// this task copies files we'll zip into a build directory
 	gulp.task( 'zip-copy-files', function() {
-		let packageContents = fs.readFileSync( './package.json', 'utf8' );
-		let packageSafelistContents;
+		var packageContents = fs.readFileSync( './package.json', 'utf8' );
+		var packageSafelistContents;
 
 		if ( fs.existsSync( './package-safelist.json' ) ) {
 			try {
@@ -28,9 +27,9 @@ module.exports = function( gulp ) {
 			console.error( 'No package safe list of files were found for the plugin.' );
 		}
 
-		let json = parseJson( packageContents );
-		let zipInclude = parseJson( packageSafelistContents );
-		let commonZipContents;
+		var json = parseJson( packageContents );
+		var zipInclude = parseJson( packageSafelistContents );
+		var commonZipContents;
 
 		if ( fs.existsSync( './common/package-safelist.json' ) ) {
 			try {
@@ -48,7 +47,7 @@ module.exports = function( gulp ) {
 			// Common was not present so we bail.
 		}
 
-		let commonZipInclude = [];
+		var commonZipInclude = [];
 
 		// Make sure if we have common we pull that content in
 		if ( commonZipContents ) {
@@ -65,8 +64,8 @@ module.exports = function( gulp ) {
 
 	// this does the zipping
 	gulp.task( 'zip-do-zip', function() {
-		let packageContents = fs.readFileSync( './package.json', 'utf8' );
-		let json = parseJson( packageContents );
+		var packageContents = fs.readFileSync( './package.json', 'utf8' );
+		var json = parseJson( packageContents );
 
 
 		return gulp.src( json._zipfoldername + '/**/*', { base: '.' } )
@@ -76,8 +75,8 @@ module.exports = function( gulp ) {
 
 	// this cleans up the trash
 	gulp.task( 'zip-purge-build-dir', function( cb ) {
-		let packageContents = fs.readFileSync( './package.json', 'utf8' );
-		let json = parseJson( packageContents );
+		var packageContents = fs.readFileSync( './package.json', 'utf8' );
+		var json = parseJson( packageContents );
 
 		sync.remove( json._zipfoldername );
 

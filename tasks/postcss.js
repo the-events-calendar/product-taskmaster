@@ -1,4 +1,4 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
 	var header = require( 'gulp-header' );
@@ -52,14 +52,14 @@ module.exports = function( gulp ) {
 			'./src/resources/postcss/**/*.pcss',
 			'!./src/resources/postcss/**/_*.pcss',
 		] )
-		.pipe( postcss( processors ) )
-		.pipe( header( banner ) )
-		.pipe(
-			rename( {
-				extname: '.css'
-			} )
-		)
-		.pipe( gulp.dest( './src/resources/css' ) );
+			.pipe( postcss( processors ) )
+			.pipe( header( banner ) )
+			.pipe(
+				rename( {
+					extname: '.css'
+				} )
+			)
+			.pipe( gulp.dest( './src/resources/css' ) );
 	};
 
 	gulp.task( 'postcss', task );

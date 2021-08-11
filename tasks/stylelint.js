@@ -1,15 +1,16 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use-strict';
 
 	var stylelint = require( 'gulp-stylelint' );
 
 	var task = function( filePath ) {
-		// --filePath flag is either string or array and must be provided.
+		// Check if package.json has file path array for stylelint.
 		if (
-			! Array.isArray( filePath ) &&
-			( typeof filePath !== 'string' || ! filePath )
+			! pkg._filePath ||
+			! pkg._filePath.stylelint ||
+			! Array.isArray( pkg._filePath.stylelint )
 		) {
-			console.error( 'At least one path using the `--filePath` flag must be provided' );
+			console.error( 'package.json must contain a file path array under _filePath.stylelint' );
 			process.exit(-1);
 		}
 
