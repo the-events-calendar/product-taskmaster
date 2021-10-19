@@ -8,13 +8,38 @@ This repository is meant to be installed via `npm install`. To enable
 that in a repository, simply run the following command:
 
 ```
-npm install --save-dev @the-events-calendar/product-taskmaster@^1.3.1
+npm install --save-dev @the-events-calendar/product-taskmaster@^2.0.0
 ```
 
 or add the following to the `package.json` in the `devDependencies` section:
 
 ```
-"product-taskmaster": "@the-events-calendar/product-taskmaster@^1.3.1",
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.0.0",
+```
+
+### Browserslist
+
+Browserslist allows us to automatically prefix CSS and provide proper polyfills for the
+targeted browsers. Recent versions of Browserslist allow users to extend configurations
+by doing the following in the `package.json`:
+
+```
+"browserslist": [
+	"extends @the-events-calendar/product-taskmaster/config/browserslist.config.js"
+]
+```
+
+However, some projects may use older versions of Browserslist which do not allow extending
+configurations. In this case, a script to sync browserslist configurations can be used to
+pull the same configuration from Products Taskmaster into the project. You can sync the
+configurations by adding a script in the `package.json`:
+
+```
+"scripts": {
+	...
+	"prebuild": "node node_modules/@the-events-calendar/product-taskmaster/scripts/syncBrowserslistConfig.js",
+	...
+}
 ```
 
 ### GlotPress
