@@ -5,7 +5,9 @@ This is a collection of The Events Calendar product Gulp tasks
 ## Installing in a plugin
 
 This repository is meant to be installed via `npm install`. To enable
-that in a repository, simply run the following command:
+that in a repository, first ensure you are running node 16 and npm 7
+(this is necessary to install peer dependencies). Then, run the
+following command:
 
 ```
 npm install --save-dev @the-events-calendar/product-taskmaster@^2.0.0
