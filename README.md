@@ -5,16 +5,43 @@ This is a collection of The Events Calendar product Gulp tasks
 ## Installing in a plugin
 
 This repository is meant to be installed via `npm install`. To enable
-that in a repository, simply run the following command:
+that in a repository, first ensure you are running node 16 and npm 7
+(this is necessary to install peer dependencies). Then, run the
+following command:
 
 ```
-npm install --save-dev @the-events-calendar/product-taskmaster@^1.3.1
+npm install --save-dev @the-events-calendar/product-taskmaster@^2.0.0
 ```
 
 or add the following to the `package.json` in the `devDependencies` section:
 
 ```
-"product-taskmaster": "@the-events-calendar/product-taskmaster@^1.3.1",
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.0.0",
+```
+
+### Browserslist
+
+Browserslist allows us to automatically prefix CSS and provide proper polyfills for the
+targeted browsers. Recent versions of Browserslist allow users to extend configurations
+by doing the following in the `package.json`:
+
+```
+"browserslist": [
+	"extends @the-events-calendar/product-taskmaster/config/browserslist.config.js"
+]
+```
+
+However, some projects may use older versions of Browserslist which do not allow extending
+configurations. In this case, a script to sync browserslist configurations can be used to
+pull the same configuration from Products Taskmaster into the project. You can sync the
+configurations by adding a script in the `package.json`:
+
+```
+"scripts": {
+	...
+	"prebuild": "node node_modules/@the-events-calendar/product-taskmaster/scripts/syncBrowserslistConfig.js",
+	...
+}
 ```
 
 ### GlotPress
@@ -161,29 +188,20 @@ add in the `.stylelintrc` file:
 }
 ```
 
-To run stylelint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+To run stylelint, you'll need to provide a file path array in the `package.json` to tell gulp where to look.
 An example might look like:
 
 ```
-gulp stylelint --filePath 'src/resources/postcss/**/*.pcss'
-```
-
-You can also provide multiple file paths by doing the following:
-
-```
-gulp stylelint --filePath 'src/resources/postcss/base/**/*.pcss' --filePath 'src/resources/postcss/components/**/*.pcss'
+"_filePath": {
+	"stylelint": [
+		"src/resources/postcss/**/*.pcss"
+	]
+}
 ```
 
 #### eslint
 
-This task runs ESLint on the JavaScript files using our ESLint configurations.
-First, install ESLint as a devDependency in the working repository.
-
-```
-npm install --save-dev eslint
-```
-
-Next, add an 
+This task runs ESLint on the JavaScript files using our ESLint configurations. Add an 
 `.eslintrc` file in the working repository and extend one of the configurations.
 A relative path from the `.eslintrc` file is required as Product Taskmaster is not
 a standard ESLint configuration package:
@@ -194,19 +212,18 @@ a standard ESLint configuration package:
 }
 ```
 
-To run ESLint, you'll need to provide a `--filePath` flag to tell gulp where to look.
+To run ESLint, you'll need to provide a file path array in the `package.json` to tell gulp where to look.
 An example might look like:
 
 ```
-gulp eslint --filePath 'src/resources/js/views/**/*.js'
-```
-
-You can also provide multiple file paths by doing the following:
-
-```
-gulp eslint --filePath 'src/resources/js/views/**/*.js' --filePath 'src/modules/**/*.js'
+"_filePath": {
+	"eslint": [
+		"src/modules/**/*.js",
+		"src/resources/**/*.js"
+	]
+}
 ```
 
 If you are extending the `eslint.es6.js` or `eslint.react.js` configuration,
-you must have a `.babelrc` file defined in the working repository, as ESLint uses
-the `.babelrc` file to parse the code.
+you must have a `babel.config.json` file defined in the working repository, as ESLint uses
+the `babel.config.json` file to parse the code.

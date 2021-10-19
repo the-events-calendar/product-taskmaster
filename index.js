@@ -1,5 +1,4 @@
-module.exports = function( gulp ) {
-	var wrappedGulp = require( 'gulp-param' )( gulp, process.argv, 'cb' );
+module.exports = function( gulp, pkg ) {
 	var normalizedPath = require( 'path' ).join( __dirname, 'tasks' );
 
 	require( 'fs' ).readdirSync( normalizedPath ).forEach( function( file ) {
@@ -7,10 +6,10 @@ module.exports = function( gulp ) {
 			return;
 		}
 
-		require( './tasks/' + file )( wrappedGulp );
+		require( './tasks/' + file )( gulp, pkg );
 	} );
 
 	// Gulp v4 must have tasks that are used in series() or parallel() defined first.
-	require( './tasks/default.js' )( wrappedGulp );
-	require( './tasks/package.js' )( wrappedGulp );
+	require( './tasks/default.js' )( gulp, pkg );
+	require( './tasks/package.js' )( gulp, pkg );
 };

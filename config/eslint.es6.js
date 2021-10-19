@@ -17,7 +17,7 @@ module.exports = {
 		},
 		sourceType: 'module',
 		babelOptions: {
-			configFile: ".babelrc",
+			configFile: './babel.config.json',
 		},
 	},
 	rules: {

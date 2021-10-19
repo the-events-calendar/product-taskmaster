@@ -1,9 +1,9 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
-	var fs      = require( 'fs' );
+	var fs = require( 'fs' );
 	var cssnano = require( 'gulp-cssnano' );
-	var rename  = require( 'gulp-rename' );
+	var rename = require( 'gulp-rename' );
 
 	var task = function() {
 		var dir = 'src/resources/css';
@@ -18,15 +18,15 @@ module.exports = function( gulp ) {
 			dir + '/**/*.css',
 			'!' + dir + '/**/*.min.css',
 		] )
-		.pipe( cssnano( {
-			'zindex': false
-		} ) )
-		.pipe(
-			rename( {
-				extname: '.min.css'
-			} )
-		)
-		.pipe( gulp.dest( dir ) );
+			.pipe( cssnano( {
+				'zindex': false
+			} ) )
+			.pipe(
+				rename( {
+					extname: '.min.css'
+				} )
+			)
+			.pipe( gulp.dest( dir ) );
 	};
 
 	gulp.task( 'compress-css', task );

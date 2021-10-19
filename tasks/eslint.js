@@ -1,19 +1,20 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use-strict';
 
 	var eslint = require( 'gulp-eslint' );
 
-	var task = function( filePath ) {
-		// --filePath flag is either string or array and must be provided.
+	var task = function() {
+		// Check if package.json has file path array for eslint.
 		if (
-			! Array.isArray( filePath ) &&
-			( typeof filePath !== 'string' || ! filePath )
+			! pkg._filePath ||
+			! pkg._filePath.eslint ||
+			! Array.isArray( pkg._filePath.eslint )
 		) {
-			console.error( 'At least one path using the `--filePath` flag must be provided' );
+			console.error( 'package.json must contain a file path array under _filePath.eslint' );
 			process.exit(-1);
 		}
 
-		return gulp.src( filePath )
+		return gulp.src( pkg._filePath.eslint )
 			.pipe( eslint( {
 				resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
 			} ) )

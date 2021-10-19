@@ -1,9 +1,9 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
-	const fs     = require( 'fs' );
-	const uglify = require( 'gulp-uglify-es' ).default;
-	const rename = require( 'gulp-rename' );
+	var fs = require( 'fs' );
+	var uglify = require( 'gulp-uglify-es' ).default;
+	var rename = require( 'gulp-rename' );
 
 	var task = function() {
 		var dir = 'src/resources/js';
@@ -18,22 +18,22 @@ module.exports = function( gulp ) {
 			dir + '/*.js',
 			'!' + dir + '/*.min.js'
 		] )
-		.pipe( uglify().on( 'error', function( e ) {
-			console.log( {
-				filename: e.filename,
-				line: e.line,
-				col: e.col,
-				name: e.name,
-				message: e.message,
-			} );
-			return this.end();
-		} ) )
-		.pipe(
-			rename( {
-				extname: '.min.js'
-			} )
-		)
-		.pipe( gulp.dest( dir ) );
+			.pipe( uglify().on( 'error', function( e ) {
+				console.log( {
+					filename: e.filename,
+					line: e.line,
+					col: e.col,
+					name: e.name,
+					message: e.message,
+				} );
+				return this.end();
+			} ) )
+			.pipe(
+				rename( {
+					extname: '.min.js'
+				} )
+			)
+			.pipe( gulp.dest( dir ) );
 	};
 
 	gulp.task( 'compress-js', task );
