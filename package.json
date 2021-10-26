@@ -74,8 +74,8 @@
     "eslint": "^7.28.0",
     "gulp": "^4.0.2",
     "mini-css-extract-plugin": "^0.4.4",
-    "postcss-loader": "^4.3.0",
-    "react-svg-loader": "^3.0.3",
+    "postcss-loader": "^2.0.6",
+    "react-svg-loader": "^2.1.0",
     "style-loader": "^2.0.0",
     "unminified-webpack-plugin": "^2.0.0"
   }
