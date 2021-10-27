@@ -1,4 +1,9 @@
 /* eslint-diable no-console */
+/**
+ * Extendable browserslist configs are available from browserslist ^2.5, but we cannot yet
+ * guarantee that other packages will not use older versions of browserslist. Until then,
+ * we will manually sync the browserslist config to the project package.json file.
+ */
 const prettier = require( 'prettier' );
 const { writeFileSync, readFileSync } = require( 'fs' );
 const { resolve } = require( 'path' );
