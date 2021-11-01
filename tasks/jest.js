@@ -1,7 +1,7 @@
 module.exports = function( gulp, pkg ) {
 	'use-strict';
 
-	var jest = require( 'gulp-jest' );
+	var jest = require( 'gulp-jest' ).default;
 
 	var task = function() {
 		// Check if package.json has file path array for jest.
