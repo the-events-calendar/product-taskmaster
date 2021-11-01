@@ -19,7 +19,7 @@ module.exports = function( gulp, pkg ) {
 				resolvePluginsRelativeTo: 'node_modules/@the-events-calendar/product-taskmaster',
 			} ) )
 			.pipe( eslint.format() )
-			.pipe( eslint.failAfterError() )
+			.pipe( eslint.failAfterError() );
 	};
 
 	gulp.task( 'eslint', task );
