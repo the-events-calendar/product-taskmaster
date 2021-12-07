@@ -10,13 +10,13 @@ that in a repository, first ensure you are running node 16 and npm 7
 following command:
 
 ```
-npm install --save-dev @the-events-calendar/product-taskmaster@^2.0.1
+npm install --save-dev @the-events-calendar/product-taskmaster@^2.1.0
 ```
 
 or add the following to the `package.json` in the `devDependencies` section:
 
 ```
-"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.0.1",
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.1.0",
 ```
 
 ### Browserslist
@@ -227,3 +227,36 @@ An example might look like:
 If you are extending the `eslint.es6.js` or `eslint.react.js` configuration,
 you must have a `babel.config.json` file defined in the working repository, as ESLint uses
 the `babel.config.json` file to parse the code.
+
+#### Jest
+
+This task runs Jest on the JavaScript files using our Jest configurations. Add a
+`jest.config.js` file in the working repository and extend one of the configurations.
+Add a `displayName` and `testMatch` to tell Jest what to look for:
+
+```
+var sharedConfig = require( '@the-events-calendar/product-taskmaster/config/jest.config.js' );
+
+module.exports = {
+	...sharedConfig,
+	displayName: 'common',
+	testMatch: [
+		'**/__tests__/**/*.js',
+	],
+};
+```
+
+To run Jest, you'll need to provide file path array in the `package.json` to tell gulp where to look.
+An example might look like:
+
+```
+"_filePath": {
+	"jest": [
+		"src/modules"
+	]
+}
+```
+
+This tells gulp to look in the `src/modules` folder. We are not specifying the files here, the
+`jest.config.js` file we set up above does that. Multiple file paths and test matches can be set up,
+allowing each file path to be tested against each of the test matches.
