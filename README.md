@@ -231,32 +231,29 @@ the `babel.config.json` file to parse the code.
 #### Jest
 
 This task runs Jest on the JavaScript files using our Jest configurations. Add a
-`jest.config.js` file in the working repository and extend one of the configurations.
+`jest.config.js` file in the working repository and extend the jest configuration.
 Add a `displayName` and `testMatch` to tell Jest what to look for:
 
 ```
 var sharedConfig = require( '@the-events-calendar/product-taskmaster/config/jest.config.js' );
+var pkg = require( './package.json' );
 
 module.exports = {
 	...sharedConfig,
 	displayName: 'common',
-	testMatch: [
-		'**/__tests__/**/*.js',
-	],
+	testMatch: pkg._filePath.jest.map( ( path ) => `<rootDir>/${ path }` ),
 };
 ```
 
-To run Jest, you'll need to provide file path array in the `package.json` to tell gulp where to look.
-An example might look like:
+Add file path array to the `package.json` to tell Jest what to test. An example might look like:
 
 ```
 "_filePath": {
 	"jest": [
-		"src/modules"
+		"src/modules/**/__tests__/**/*.js"
 	]
 }
 ```
 
-This tells gulp to look in the `src/modules` folder. We are not specifying the files here, the
-`jest.config.js` file we set up above does that. Multiple file paths and test matches can be set up,
-allowing each file path to be tested against each of the test matches.
+The `testMatch` can be input manually without relying on `package.json`. This just keeps all
+file paths in one place.
