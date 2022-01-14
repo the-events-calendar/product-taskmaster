@@ -1,6 +1,7 @@
 const vendor = {
+	moment: 'moment',
+	react: 'React',
 	'react-dom': 'ReactDOM',
-	'react': 'React',
 };
 
 module.exports = vendor;
