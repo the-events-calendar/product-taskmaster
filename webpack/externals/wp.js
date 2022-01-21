@@ -4,6 +4,7 @@ const wp = [
 	'date',
 	'editor',
 	'element',
+	'hooks',
 	'i18n',
 	'utils',
 	'data',
