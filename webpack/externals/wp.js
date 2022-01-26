@@ -1,22 +1,23 @@
-const wp = [
-	'blocks',
-	'components',
-	'date',
-	'editor',
-	'element',
-	'hooks',
-	'i18n',
-	'utils',
-	'data',
-];
+// Object of globalDependency to dependency
+const wp = {
+	blocks: 'blocks',
+	components: 'components',
+	data: 'data',
+	date: 'date',
+	editor: 'editor',
+	element: 'element',
+	hooks: 'hooks',
+	isShallowEqual: 'is-shallow-equal',
+	i18n: 'i18n',
+	utils: 'utils',
+};
 
-// Puts @wordpress/[dependency] on the window object as window.wp.[dependency]
-const externals = wp.reduce(
-	( result, dependency ) => {
-		result[ `@wordpress/${ dependency }` ] = {
-			var: `wp.${ dependency }`,
-			root: [ 'wp', dependency ],
-		};
+// Puts @wordpress/[dependency] on the window object as window.wp.[globalDependency]
+const externals = Object.keys( wp ).reduce(
+	( result, globalDependency ) => {
+		const dependency = wp[ globalDependency ];
+		result[ `@wordpress/${ dependency }` ] = `wp.${ globalDependency }`;
+
 		return result;
 	},
 	{}
