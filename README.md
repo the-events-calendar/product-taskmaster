@@ -10,13 +10,13 @@ that in a repository, first ensure you are running node 16 and npm 7
 following command:
 
 ```
-npm install --save-dev @the-events-calendar/product-taskmaster@^2.1.1
+npm install --save-dev @the-events-calendar/product-taskmaster@^2.2.0
 ```
 
 or add the following to the `package.json` in the `devDependencies` section:
 
 ```
-"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.1.1",
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.2.0",
 ```
 
 ### Browserslist

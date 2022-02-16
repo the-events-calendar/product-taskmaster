@@ -5,6 +5,7 @@ const styles = require( '../module/rules/styles' );
 const images = require( '../module/rules/images' );
 const svg = require( '../module/rules/svg' );
 const externals = require( '../externals' );
+const optimization = require( '../optimization' );
 
 const isProduction = process.env.NODE_ENV === 'production';
 const postfix = isProduction ? 'min.js' : 'js';
@@ -33,4 +34,5 @@ module.exports = {
 		styles.plugin(),
 		...plugins,
 	],
+	optimization,
 };
