@@ -4,3 +4,4 @@
 node_modules
 compiler.jar
 *.ps1
+*.code-workspace
