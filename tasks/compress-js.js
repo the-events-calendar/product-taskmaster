@@ -15,8 +15,8 @@ module.exports = function( gulp, pkg ) {
 		}
 
 		return gulp.src( [
-			dir + '/*.js',
-			'!' + dir + '/*.min.js'
+			dir + '/**/*.js',
+			'!' + dir + '/**/*.min.js'
 		] )
 			.pipe( uglify().on( 'error', function( e ) {
 				console.log( {
