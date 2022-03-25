@@ -10,13 +10,13 @@ that in a repository, first ensure you are running node 16 and npm 7
 following command:
 
 ```
-npm install --save-dev @the-events-calendar/product-taskmaster@^2.2.0
+npm install --save-dev @the-events-calendar/product-taskmaster@^2.2.1
 ```
 
 or add the following to the `package.json` in the `devDependencies` section:
 
 ```
-"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.2.0",
+"product-taskmaster": "@the-events-calendar/product-taskmaster@^2.2.1",
 ```
 
 ### Browserslist
@@ -201,7 +201,7 @@ An example might look like:
 
 #### eslint
 
-This task runs ESLint on the JavaScript files using our ESLint configurations. Add an 
+This task runs ESLint on the JavaScript files using our ESLint configurations. Add an
 `.eslintrc` file in the working repository and extend one of the configurations.
 A relative path from the `.eslintrc` file is required as Product Taskmaster is not
 a standard ESLint configuration package:
