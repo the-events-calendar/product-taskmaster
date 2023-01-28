@@ -1,7 +1,7 @@
 module.exports = {
 	extends: [
 		'plugin:jsx-a11y/recommended',
-		'wpcalypso/react',
+		'plugin:wpcalypso/react',
 		'./eslint.es6.js'
 	],
 	plugins: [
