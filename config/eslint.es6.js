@@ -7,7 +7,7 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
-		'wpcalypso',
+		'plugin:wpcalypso/recommended',
 		'plugin:import/recommended',
 	],
 	parser: '@babel/eslint-parser',
