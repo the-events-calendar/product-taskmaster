@@ -1,8 +1,8 @@
-module.exports = function( gulp, pkg ) {
+module.exports = ( gulp, pkg ) => {
 	'use strict';
 
 	var fs = require( 'fs' );
-	var uglify = require( 'gulp-uglify-es' ).default;
+	const terser = require('gulp-terser');
 	var rename = require( 'gulp-rename' );
 
 	var task = function() {
@@ -15,18 +15,12 @@ module.exports = function( gulp, pkg ) {
 		}
 
 		return gulp.src( [
-			dir + '/**/*.js',
-			'!' + dir + '/**/*.min.js'
-		] )
-			.pipe( uglify().on( 'error', function( e ) {
-				console.log( {
-					filename: e.filename,
-					line: e.line,
-					col: e.col,
-					name: e.name,
-					message: e.message,
-				} );
-				return this.end();
+				dir + '/**/*.js',
+				'!' + dir + '/**/*.min.js'
+			] )
+			.pipe( terser( {
+				keep_fnames: true,
+				mangle: false
 			} ) )
 			.pipe(
 				rename( {
