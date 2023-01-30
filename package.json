@@ -38,6 +38,7 @@
     "gulp-run-command": "0.0.9",
     "gulp-sort": "^2.0.0",
     "gulp-stylelint": "^13.0.0",
+    "gulp-terser": "^2.1.0",
     "gulp-uglify-es": "^1.0.4",
     "gulp-vinyl-zip": "^2.1.0",
     "gulp-wp-pot": "^2.3.2",
@@ -86,8 +87,5 @@
     "react-test-renderer": "16.3.0",
     "style-loader": "^2.0.0",
     "unminified-webpack-plugin": "^2.0.0"
-  },
-  "devDependencies": {
-    "gulp-terser": "^2.1.0"
   }
 }
