@@ -92,7 +92,7 @@ module.exports = function( gulp, pkg ) {
 			}
 		);
 
-		const compressJsCommand = require( './compress-js',  );
+		const compressJsCommand = require( './compress-js',  )( gulp, pkg );
 		// watch for changes to non .min JS files and compress them
 		gulp.watch(
 			[
