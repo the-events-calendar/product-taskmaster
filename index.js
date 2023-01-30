@@ -6,7 +6,16 @@ module.exports = function( gulp, pkg ) {
 			return;
 		}
 
-		require( './tasks/' + file )( gulp, pkg );
+		// Loads the gulpCommand
+		const gulpCommand = require( './tasks/' + file );
+
+		let defineTask = gulpCommand;
+		if ( typeof gulpCommand === 'object' && typeof gulpCommand.defineTask !== 'undefined' ) {
+			defineTask = gulpCommand.defineTask;
+		}
+
+		// Define the tasks.
+		defineTask( gulp, pkg );
 	} );
 
 	// Gulp v4 must have tasks that are used in series() or parallel() defined first.

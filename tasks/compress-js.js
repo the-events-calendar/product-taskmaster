@@ -1,10 +1,33 @@
-module.exports = ( gulp, pkg ) => {
-	'use strict';
+const fs = require( 'fs' );
+const terser = require('gulp-terser');
+const rename = require( 'gulp-rename' );
 
-	var fs = require( 'fs' );
-	const terser = require('gulp-terser');
-	var rename = require( 'gulp-rename' );
+const getResourcesDir = () => {
+	let resourcesDir = 'src/resources/js';
+	try {
+		fs.statSync( resourcesDir );
+	} catch( err ) {
+		resourcesDir = 'resources';
+	}
+	return resourcesDir;
+};
 
+const defineTask = ( gulp, pkg ) => {
+	const taskCallback = function() {
+		const dir = getResourcesDir();
+		const gulpSrc = gulp.src( [
+			dir + '/**/*.js',
+			'!' + dir + '/**/*.min.js'
+		] );
+
+		return minifyFile( gulpSrc );
+	};
+
+	gulp.task( 'compress-js', taskCallback );
+};
+
+const minifyFile = ( gulpSrc ) => {
+	const dir = getResourcesDir();
 	const banner = [
 		'/**',
 		' * This JS file was auto-generated via Terser.',
@@ -18,33 +41,23 @@ module.exports = ( gulp, pkg ) => {
 		'',
 	].join( '\n' );
 
-	var task = function() {
-		var dir = 'src/resources/js';
-
-		try {
-			fs.statSync( dir );
-		} catch( err ) {
-			dir = 'resources';
-		}
-
-		return gulp.src( [
-				dir + '/**/*.js',
-				'!' + dir + '/**/*.min.js'
-			] )
-			.pipe( terser( {
+	return gulpSrc
+		.pipe(
+			terser( {
 				keep_fnames: true,
 				mangle: false,
 				format: {
 					preamble: banner,
 				}
-			} ) )
-			.pipe(
-				rename( {
-					extname: '.min.js'
-				} )
-			)
-			.pipe( gulp.dest( dir ) );
-	};
+			} )
+		)
+		.pipe(
+			rename( {
+				extname: '.min.js'
+			} )
+		)
+		.pipe( gulp.dest( dir ) );
+}
 
-	gulp.task( 'compress-js', task );
-};
+module.exports.defineTask = defineTask;
+module.exports.minifyFile = minifyFile;
