@@ -13,19 +13,22 @@ module.exports = ( ( gulp, pkg ) => {
 		return resourcesDir;
 	};
 
-	const runTask = () => {
+	const getSrc = () => {
 		const dir = getResourcesDir();
-		const gulpSrc = gulp.src( [
+
+		return [
 			dir + '/**/*.js',
 			'!' + dir + '/**/*.min.js'
-		] );
-
-		return minifyFile( gulpSrc );
+		];
 	};
 
-	const defineTask = () => {
-		gulp.task( 'compress-js', runTask );
-	}
+	const run = () => {
+		return minifyFile( gulp.src( getSrc() ) );
+	};
+
+	const register = () => {
+		gulp.task( 'compress-js', run );
+	};
 
 	const minifyFile = ( gulpSrc ) => {
 		const dir = getResourcesDir();
@@ -58,10 +61,13 @@ module.exports = ( ( gulp, pkg ) => {
 				} )
 			)
 			.pipe( gulp.dest( dir ) );
-	}
+	};
 
+	// Expose methods that make sense.
 	return {
 		minifyFile: minifyFile,
-		defineTask: defineTask,
+		register: register,
+		getSrc: getSrc,
+		getResourcesDir: getResourcesDir,
 	};
 } );

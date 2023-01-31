@@ -9,8 +9,8 @@ module.exports = function( gulp, pkg ) {
 		// Loads the gulpCommand
 		const gulpCommand = require( './tasks/' + file )( gulp, pkg );
 
-		if ( typeof gulpCommand === 'object' && typeof gulpCommand.defineTask !== 'undefined' ) {
-			gulpCommand.defineTask();
+		if ( typeof gulpCommand === 'object' && typeof gulpCommand.register !== 'undefined' ) {
+			gulpCommand.register();
 		}
 	} );
 

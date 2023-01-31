@@ -92,13 +92,10 @@ module.exports = function( gulp, pkg ) {
 			}
 		);
 
-		const compressJsCommand = require( './compress-js',  )( gulp, pkg );
+		const compressJsCommand = require( './compress-js' )( gulp, pkg );
 		// watch for changes to non .min JS files and compress them
 		gulp.watch(
-			[
-				js_dir + '/*.js',
-				'!' + js_dir + '/*.min.js'
-			],
+			compressJsCommand.getSrc(),
 			( file ) => compressJsCommand.minifyFile( gulp.src( file.path ) )
 		);
 
