@@ -7,7 +7,6 @@ module.exports = function( gulp, pkg ) {
 	var livereload = require( 'gulp-livereload' );
 	var log = require( 'fancy-log' );
 	var rename = require( 'gulp-rename' );
-	var uglify = require( 'gulp-uglify-es' ).default;
 	var header = require( 'gulp-header' );
 	var postcss = require( 'gulp-postcss' );
 	var postcssPresetEnv = require( 'postcss-preset-env' );
@@ -93,22 +92,11 @@ module.exports = function( gulp, pkg ) {
 			}
 		);
 
+		const compressJsCommand = require( './compress-js' )( gulp, pkg );
 		// watch for changes to non .min JS files and compress them
 		gulp.watch(
-			[
-				js_dir + '/*.js',
-				'!' + js_dir + '/*.min.js'
-			],
-			function( file ) {
-				gulp.src( file.path )
-					.pipe( uglify() )
-					.pipe(
-						rename( {
-							extname: '.min.js'
-						} )
-					)
-					.pipe( gulp.dest( js_dir ) );
-			}
+			compressJsCommand.getSrc(),
+			( file ) => compressJsCommand.minifyFile( gulp.src( file.path ) )
 		);
 
 		// watch for changes to non .min CSS files and compress them
