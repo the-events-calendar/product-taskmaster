@@ -1,7 +1,0 @@
-vendor/**
-node_modules/**
-**/*.jsx
-**/*.js
-*.jsx
-*.js
-
