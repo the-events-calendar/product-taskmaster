@@ -23,6 +23,9 @@ module.exports = {
 		'block-no-empty': true,
 		'block-opening-brace-newline-after': 'always',
 		'declaration-block-semicolon-newline-before': 'never-multi-line',
+		"font-family-no-missing-generic-family-keyword": [ true, {
+			"ignoreFontFamilies": [ "dashicons" ]
+		} ],
 		'function-comma-newline-before': 'never-multi-line',
 		'function-parentheses-space-inside': 'never',
 		'function-url-quotes': 'always',
