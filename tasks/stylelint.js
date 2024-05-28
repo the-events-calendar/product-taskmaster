@@ -1,18 +1,26 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use-strict';
 
 	var stylelint = require( 'gulp-stylelint' );
-	var postcss_dir = './src/resources/postcss'
 
-	var task = function() {
-		return gulp.src( postcss_dir + '/**/*.pcss' )
+	var task = function( filePath ) {
+		// Check if package.json has file path array for stylelint.
+		if (
+			! pkg._filePath ||
+			! pkg._filePath.stylelint ||
+			! Array.isArray( pkg._filePath.stylelint )
+		) {
+			console.error( 'package.json must contain a file path array under _filePath.stylelint' );
+			process.exit(-1);
+		}
+
+		return gulp.src( pkg._filePath.stylelint )
 			.pipe( stylelint( {
 				fix: false,
 				reporters: [
 					{ formatter: 'string', console: true },
 				],
-			} ) )
-			.pipe( gulp.dest( postcss_dir ) );
+			} ) );
 	};
 
 	gulp.task( 'stylelint', task );

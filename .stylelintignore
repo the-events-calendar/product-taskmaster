@@ -1,5 +1,5 @@
 vendor/**
-src/resourceas/postcss/utilities/**
+src/resources/postcss/utilities/**
 node_modules/**
 **/*.jsx
 **/*.js

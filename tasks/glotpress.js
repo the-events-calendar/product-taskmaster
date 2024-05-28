@@ -1,9 +1,9 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
-	var fs       = require( 'fs' );
+	var fs = require( 'fs' );
 	var download = require( 'gulp-download-stream' );
-	var request  = require( 'request' );
+	var request = require( 'request' );
 
 	var task = function( cb ) {
 
@@ -60,7 +60,7 @@ module.exports = function( gulp ) {
 							file: filename,
 							url: url
 						} )
-						.pipe( gulp.dest( 'lang/' ) );
+							.pipe( gulp.dest( 'lang/' ) );
 					}
 				}
 			}

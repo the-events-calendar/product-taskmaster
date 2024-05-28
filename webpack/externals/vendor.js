@@ -1,6 +1,8 @@
 const vendor = {
+	moment: 'moment',
+	react: 'React',
 	'react-dom': 'ReactDOM',
-	'react': 'React',
+	'regenerator-runtime/runtime': 'regeneratorRuntime',
 };
 
 module.exports = vendor;

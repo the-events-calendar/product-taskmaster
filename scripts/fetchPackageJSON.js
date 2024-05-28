@@ -24,7 +24,7 @@ module.exports = new Promise( ( resolve, reject ) => {
 	https.get( URL, response => {
 		const { statusCode } = response;
 		let data = '';
-		
+
 		if (statusCode === 404) {
 			https.get( 'https://raw.githubusercontent.com/the-events-calendar/tribe-common/master/package.json', subResponse => {
 				subResponse.setEncoding( 'utf8' );
@@ -52,6 +52,6 @@ module.exports = new Promise( ( resolve, reject ) => {
 				}
 			} );
 		}
-		
+
 	} );
 } );

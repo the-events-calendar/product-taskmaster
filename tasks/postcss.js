@@ -1,4 +1,4 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
 	var header = require( 'gulp-header' );
@@ -13,12 +13,21 @@ module.exports = function( gulp ) {
 	var cssMqpacker = require( 'css-mqpacker' );
 	var rename = require( 'gulp-rename' );
 
-	var task = function() {
+	var task = function( preserve ) {
+		var preserveFlag = 'false' !== preserve;
+
 		var processors = [
 			postcssImport,
 			postcssMixins,
 			postcssNested,
-			postcssPresetEnv( { stage: 0, preserve: false } ),
+			postcssPresetEnv( {
+				stage: 0,
+				feature: {
+					'custom-properties': {
+						preserve: preserveFlag,
+					},
+				},
+			} ),
 			postcssInlineSvg,
 			postcssCalc,
 			postcssHexrgba,
@@ -33,7 +42,7 @@ module.exports = function( gulp ) {
 			' * src/resources/postcss/ file. For more information, check out our engineering',
 			' * docs on how we handle CSS in our engineering docs.',
 			' *',
-			' * @see: http://moderntribe.github.io/products-engineering/css/',
+			' * @see: https://the-events-calendar.github.io/products-engineering/docs/code-standards/css/',
 			' */',
 			'',
 			'',
@@ -43,14 +52,14 @@ module.exports = function( gulp ) {
 			'./src/resources/postcss/**/*.pcss',
 			'!./src/resources/postcss/**/_*.pcss',
 		] )
-		.pipe( postcss( processors ) )
-		.pipe( header( banner ) )
-		.pipe(
-			rename( {
-				extname: '.css'
-			} )
-		)
-		.pipe( gulp.dest( './src/resources/css' ) );
+			.pipe( postcss( processors ) )
+			.pipe( header( banner ) )
+			.pipe(
+				rename( {
+					extname: '.css'
+				} )
+			)
+			.pipe( gulp.dest( './src/resources/css' ) );
 	};
 
 	gulp.task( 'postcss', task );

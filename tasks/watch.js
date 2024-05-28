@@ -1,4 +1,4 @@
-module.exports = function( gulp ) {
+module.exports = function( gulp, pkg ) {
 	'use strict';
 
 	var cssnano = require( 'gulp-cssnano' );
@@ -7,7 +7,6 @@ module.exports = function( gulp ) {
 	var livereload = require( 'gulp-livereload' );
 	var log = require( 'fancy-log' );
 	var rename = require( 'gulp-rename' );
-	var uglify = require( 'gulp-uglify-es' ).default;
 	var header = require( 'gulp-header' );
 	var postcss = require( 'gulp-postcss' );
 	var postcssPresetEnv = require( 'postcss-preset-env' );
@@ -19,7 +18,7 @@ module.exports = function( gulp ) {
 	var postcssCalc = require( 'postcss-calc' );
 	var cssMqpacker = require( 'css-mqpacker' );
 
-	var task = function() {
+	var task = function( preserve ) {
 		livereload.listen();
 
 		var postcss_dir = 'src/resources/postcss';
@@ -38,6 +37,8 @@ module.exports = function( gulp ) {
 			js_dir = 'resources';
 		}
 
+		var preserveFlag = 'false' !== preserve;
+
 		// watch for changes to postcss files and compile them
 		gulp.watch(
 			[
@@ -48,7 +49,14 @@ module.exports = function( gulp ) {
 					postcssImport,
 					postcssMixins,
 					postcssNested,
-					postcssPresetEnv( { stage: 0, preserve: false } ),
+					postcssPresetEnv( {
+						stage: 0,
+						feature: {
+							'custom-properties': {
+								preserve: preserveFlag,
+							},
+						},
+					} ),
 					postcssInlineSvg,
 					postcssCalc,
 					postcssHexrgba,
@@ -63,7 +71,7 @@ module.exports = function( gulp ) {
 					' * src/resources/postcss/ file. For more information, check out our engineering',
 					' * docs on how we handle CSS in our engineering docs.',
 					' *',
-					' * @see: http://moderntribe.github.io/products-engineering/css/',
+					' * @see: https://the-events-calendar.github.io/products-engineering/docs/code-standards/css/',
 					' */',
 					'',
 					'',
@@ -73,33 +81,22 @@ module.exports = function( gulp ) {
 					'./src/resources/postcss/**/*.pcss',
 					'!./src/resources/postcss/**/_*.pcss',
 				] )
-				.pipe( postcss( processors ) )
-				.pipe( header( banner ) )
-				.pipe(
-					rename( {
-						extname: '.css'
-					} )
-				)
-				.pipe( gulp.dest( './src/resources/css' ) );
+					.pipe( postcss( processors ) )
+					.pipe( header( banner ) )
+					.pipe(
+						rename( {
+							extname: '.css'
+						} )
+					)
+					.pipe( gulp.dest( './src/resources/css' ) );
 			}
 		);
 
+		const compressJsCommand = require( './compress-js' )( gulp, pkg );
 		// watch for changes to non .min JS files and compress them
 		gulp.watch(
-			[
-				js_dir + '/*.js',
-				'!' + js_dir + '/*.min.js'
-			],
-			function( file ) {
-				gulp.src( file.path )
-					.pipe( uglify() )
-					.pipe(
-						rename( {
-							extname: '.min.js'
-						} )
-					)
-					.pipe( gulp.dest( js_dir ) );
-			}
+			compressJsCommand.getSrc(),
+			( file ) => compressJsCommand.minifyFile( gulp.src( file.path ) )
 		);
 
 		// watch for changes to non .min CSS files and compress them
