@@ -1,7 +1,0 @@
-vendor/**
-src/resources/postcss/utilities/**
-node_modules/**
-**/*.jsx
-**/*.js
-*.jsx
-*.js
