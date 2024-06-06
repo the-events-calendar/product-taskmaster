@@ -7,7 +7,8 @@ module.exports = {
 		'*.js',
 		'*.jsx',
 		'vendor/**',
-		'node_modules/**'
+		'node_modules/**',
+		'src/resources/postcss/utilities/**',
 	],
 	rules: {
 		'at-rule-name-space-after': 'always',
