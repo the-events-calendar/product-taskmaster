@@ -38,7 +38,9 @@ module.exports = {
 		'no-extra-semicolons': true,
 		'no-invalid-double-slash-comments': null,
 		'order/properties-alphabetical-order': true,
-		'property-no-unknown': true,
+		'property-no-unknown': [ true, {
+			'ignoreProperties': [ 'container-type' ]
+		} ],
 		'rule-empty-line-before': [ 'always-multi-line', {
 			'ignore': [ 'after-comment', 'first-nested' ]
 		} ],
