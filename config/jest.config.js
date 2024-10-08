@@ -7,6 +7,6 @@ module.exports = {
 		'\\.(css|pcss)$': 'identity-obj-proxy',
 		'\\.(svg)$': '<rootDir>/__mocks__/icons.js',
 	},
-	testEnvironment: 'jest-environment-jsdom-global',
+	testEnvironment: 'jest-environment-jsdom',
 };
 

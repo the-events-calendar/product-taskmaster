@@ -5,13 +5,18 @@ const json          = JSON.parse( fs.readFileSync( 'package.json' ) );
 let zipSafelist;
 
 try {
-	if ( fs.accessSync( 'package-safelist.json', fs.constants.F_OK ) ) {
-		zipSafelist = JSON.parse( fs.readFileSync( 'package-safelist.json' ) );
-	} else {
-		zipSafelist = JSON.parse( fs.readFileSync( 'package-whitelist.json' ) );
-	}
-} catch ( e ) {
-	console.log( e );
+    // Check if 'package-safelist.json' exists.
+    fs.accessSync('package-safelist.json', fs.constants.F_OK);
+    zipSafelist = JSON.parse(fs.readFileSync('package-safelist.json'));
+} catch (e) {
+    try {
+        // If 'package-safelist.json' does not exist, try 'package-whitelist.json'.
+        fs.accessSync('package-whitelist.json', fs.constants.F_OK);
+        zipSafelist = JSON.parse(fs.readFileSync('package-whitelist.json'));
+    } catch (err) {
+        console.log('Neither safelist nor whitelist file exists.');
+        throw err;
+    }
 }
 
 // create a file to stream archive data to.

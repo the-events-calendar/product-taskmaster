@@ -79,7 +79,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "jest-environment-jsdom": "^27.3.1",
-    "jest-environment-jsdom-global": "^3.0.0",
     "mini-css-extract-plugin": "^0.4.5",
     "postcss-loader": "^2.0.6",
     "react-svg-loader": "^2.1.0",
