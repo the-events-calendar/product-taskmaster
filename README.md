@@ -147,15 +147,6 @@ with a `.min.js` extension.
 gulp compress-js
 ```
 
-#### glotpress
-
-This task pulls language files from the provided GlotPress URLs in `package.json` and places them in
-the `lang/` directory.
-
-```
-gulp glotpress
-```
-
 #### pull
 
 This task pulls and submodule updates the repo using the branch provided by `--branch`.
