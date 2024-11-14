@@ -8,6 +8,7 @@ module.exports = {
 			/@moderntribe/,
 			/react-day-picker/,
 			/date-fns/,
+			/chrono-node/
 		]
     },
 	use: 'babel-loader',
