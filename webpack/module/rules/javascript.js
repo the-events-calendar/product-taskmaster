@@ -6,7 +6,8 @@ module.exports = {
 			// Except for a few of them that needs to be transpiled because they use modern syntax
 			/@the-events-calendar/,
 			/@moderntribe/,
-			/react-day-picker/
+			/react-day-picker/,
+			/date-fns/
 		]
     },
 	use: 'babel-loader',
