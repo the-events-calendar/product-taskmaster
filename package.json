@@ -1,12 +1,12 @@
 {
   "name": "@the-events-calendar/product-taskmaster",
   "description": "This is a collection of The Events Calendar product Gulp tasks",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "repository": "git@github.com:the-events-calendar/product-taskmaster.git",
   "main": "index.js",
   "engines": {
-    "node": "18.13.0",
-    "npm": "8.19.3"
+    "node": "18.17.0",
+    "npm": "9.6.7"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.14.5",
@@ -72,8 +72,6 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-lodash": "^3.3.4",
     "css-loader": "^0.28.10",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "^8.32.0",
     "gulp": "^4.0.2",
     "identity-obj-proxy": "^3.0.0",
